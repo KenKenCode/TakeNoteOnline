@@ -1,0 +1,41 @@
+body {
+    
+    font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #c4c0bc
+  }
+  
+  li {
+    padding-right: 20px;
+    float: left;
+    
+  }
+
+  li a {
+    padding-top: 10px;
+    width: 130%; /*We set to more than 100% so the box still allocates some space around the li a's content */
+    height: 30px;;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    
+    
+  }
+
+  /*
+  padding, margin
+  decoration, text color
+
+  */
+
+  

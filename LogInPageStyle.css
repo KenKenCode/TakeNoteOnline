@@ -1,0 +1,54 @@
+body {
+    padding: 20px;
+    font-family: sans-serif;
+    background-image: url('Images/LogInBackgroundImage.jpg');
+}
+.logInBox {
+    width: 80%;
+    background-color: magenta;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px;
+    max-width: 500px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+hr {
+    
+    height: 7px;
+    background-color: greenyellow;
+    border-color: greenyellow;
+}
+
+h2 {
+    color: white;
+}
+
+.logInTextbox {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+}
+
+.logInButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    display: block;
+    /* Those blocks in the layout can be put either vertical or horizontal direction one after another. It include elements like <div>, <section>, <form>. <header>, <footer>, <h1>-<h6>, etc. */
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+p {
+    text-align: center;
+}
