@@ -5,36 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notebooks</title>
-    <link href = "NotebooksPageStyle.css" rel = "stylesheet"/>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script>
-        function myFunction() {
-          var x = document.getElementById("demo");
-          if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-          } else { 
-            x.className = x.className.replace(" w3-show", "");
-          }
-        }
-        </script>
+    <link rel = "stylesheet" href = "NotebooksPage2Style.css"/>
+    
+    <!--For icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-    <div class="w3-bar w3-light-grey">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#" class="w3-bar-item w3-button">Notebooks</a>
-        <div class="w3-dropdown-click">
-          <button class="w3-button" onclick="myFunction()">
-            Extras <i class="fa fa-caret-down"></i>
-          </button>
-          <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
-            <a href="#" class="w3-bar-item w3-button">Optical Character Recognition</a>
-            <a href="#" class="w3-bar-item w3-button"></a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-          </div>
+    <nav>
+      <div class = "nav-inner">
+        <h1 class = "nav-brand">Welcome</h1>
+        <div class="nav-hamburger" onclick = "showMenu()">
+          <i class = "bx bx-menu bx-md"></i>
         </div>
+        <ul class = "nav-links">
+          <li><a href = "#">Home</a></li>
+          <li><a href = "#">Notebooks</a></li>
+          <li><a href = "#">Extras</a></li>
+        </ul>
       </div>
+    </nav>
 
+    <section id ="hero"></section>
+    <script src = "NotebooksPage2Script.js"></script>
 
     </body>
     </html>
