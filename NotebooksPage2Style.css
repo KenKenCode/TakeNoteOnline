@@ -51,9 +51,43 @@ nav {
     text-decoration: none;
 }
 
-#hero {
+#notebookContent {
+    margin: 40px;
     background: url() center center / cover;
     height: 100vh;
+    background-image: linear-gradient(to right, #33ccff 0%, #ec4b0b 100%);
+    border-color: white;
+    border-style: solid;
+
+}
+
+/* start of add new notes */
+#addNote {
+    float: left;
+    margin: 10px;
+    width: 300px;
+    height: 70%;
+    justify-content: start;
+    display: inline-block;
+    border-color: black;
+    border-style: solid;
+}
+
+#addNoteLabel {
+    margin: 15px;
+    text-align: center;
+}
+
+/* end of add new notes */
+
+#noteList {
+    float: right;
+    margin: 10px;
+    width: 50%;
+    justify-content: end;
+    border-color: black;
+    border-style: solid;
+    
 }
 
 .nav-hamburger {
