@@ -8,7 +8,12 @@
 }
 
 body {
+    
     font-family: "Open Sans", sans-serif;
+    background-image: url('Images/NotebooksPage2Background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 nav {
@@ -89,6 +94,13 @@ nav {
     grid-template-columns: auto;
     gap: 5px;
     
+}
+
+#titleAndContent > * {
+    padding: 20px 0;
+    text-align: center;
+    background-color: rgba(211, 27, 27, 0.8);
+    font-size: 30px;
 }
 
 table, th, tr, td {

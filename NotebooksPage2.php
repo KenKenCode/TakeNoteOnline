@@ -31,7 +31,9 @@
     <div id="addNote">
       <div id="noteTitleAndContentContainer">
         <div id="titleAndContent">
+          <input type="text" id="noteTitle" style="width: 100%; margin-bottom: 20px;">
           
+          <input type="text" id="noteContent" style="width: 100%; margin-bottom: 40px;">
         </div>
       </div>
     </div>
