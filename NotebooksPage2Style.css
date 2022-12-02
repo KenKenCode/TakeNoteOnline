@@ -75,10 +75,10 @@ nav {
 }
 
 #displayNotes {
-    display: inline-block;
     margin-top: 50px;
     margin-right: 20px;
     width: 40%;
+    display: inline-block;
     border-color: blue;
     border-style: solid;
 }

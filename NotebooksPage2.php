@@ -28,7 +28,14 @@
       </div>
     </nav>
 
-    <section id ="hero"></section>
+    <div id="addNote">
+      Hello
+    </div>
+
+    <div id="displayNotes">
+      Hi
+    </div>
+
     <script src = "NotebooksPage2Script.js"></script>
 
     </body>
