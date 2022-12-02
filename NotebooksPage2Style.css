@@ -83,6 +83,14 @@ nav {
     border-style: solid;
 }
 
+#noteTitleAndContentContainer{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+    
+}
+
 table, th, tr, td {
     /* th = table header, tr = table row, td = table cell/table data */
 	border: 2px solid;

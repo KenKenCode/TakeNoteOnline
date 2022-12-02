@@ -29,7 +29,11 @@
     </nav>
 
     <div id="addNote">
-      Hello
+      <div id="noteTitleAndContentContainer">
+        <div id="titleAndContent">
+          
+        </div>
+      </div>
     </div>
 
     <div id="displayNotes">
