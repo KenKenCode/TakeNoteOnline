@@ -54,7 +54,10 @@ nav {
     text-decoration: none;
 }
 
-
+#hero {
+    background: url() center center / cover;
+    height: 100vh;
+}
 
 .nav-hamburger {
     display: none; /* At screen size greater than 600 pixels, we will hide the hamburger menu */

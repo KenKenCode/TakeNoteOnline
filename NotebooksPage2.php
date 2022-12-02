@@ -28,20 +28,7 @@
       </div>
     </nav>
 
-    
-    <div id = "addNote">
-    world
-    </div>
-
-    <div id = "displayNotes">
-      <table>
-        <tr>
-          <td>One</td>
-        </tr>
-      </table>
-    </div>
-
-    <!--Scripts-->
+    <section id ="hero"></section>
     <script src = "NotebooksPage2Script.js"></script>
 
     </body>
