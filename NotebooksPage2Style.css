@@ -12,11 +12,14 @@ body {
 }
 
 nav {
+    
     background: #f1faff;
     color: #3d4756;
     position: relative;
-    z-index: 10;
-    box-shadow: 0 0 32px 0 #cacde1;
+    z-index: 10; /* determines the stack order of an element. If the element has higher z-index than another element, then it will be displayed on top of that element*/
+    box-shadow: 0 4px 20px 0 rgb(149, 232, 238); 
+    /*box-shadow: 0 0 32px 0 #cacde1;*/
+    /* box-shadow: h-offset v-offset blur spread color */
 }
 
 .nav-inner {
@@ -51,16 +54,48 @@ nav {
     text-decoration: none;
 }
 
-#hero {
-    background: url() center center / cover;
-    height: 100vh;
-}
+
 
 .nav-hamburger {
-    display: none; /* At display screen > 600px, we will hide this */
+    display: none; /* At screen size greater than 600 pixels, we will hide the hamburger menu */
+}
+
+#addNote {
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 500px;
+    width: 200px;
+    display: inline-block;
+    border-color: green;
+    border-style: solid;
+
+}
+
+#displayNotes {
+    display: inline-block;
+    margin-top: 50px;
+    margin-right: 20px;
+    width: 40%;
+    border-color: blue;
+    border-style: solid;
+}
+
+table, th, tr, td {
+    /* th = table header, tr = table row, td = table cell/table data */
+	border: 2px solid;
+	text-align: center;
+    width: 100%; /* 100% to fill in the entire content area of the parent div */
+	justify-content: center;
+	
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	
+	bottom:auto;
 }
 
 @media (max-width: 600px) {
+    /* If screen size is less than 600 pixels, then this CSS will apply */
 .nav-hamburger {
     display: block;
     cursor: pointer;
@@ -76,4 +111,15 @@ nav {
     align-items: center;
     width: 100%;
 }
+
+#addNote {
+    margin: 100px auto;
+    display: block; /* To prevent the div going inline-block when screen size is less than 600 pixels */
 }
+
+#displayNotes {
+    margin: 100px auto;
+    display: block;
+}
+}
+
