@@ -30,11 +30,14 @@
 
     <div id="addNote">
       <div id="noteTitleAndContentContainer">
+        
         <div id="titleAndContent">
-          <input type="text" id="noteTitle" style="width: 100%; margin-bottom: 20px;">
-          
-          <input type="text" id="noteContent" style="width: 100%; margin-bottom: 40px;">
+        <form action="" method="" id="noteForm">
+          <input type="text" id="noteTitle" name="titleName" placeholder="Note Title">
+          <textarea id="noteContent" name="contentName" form="noteForm">Enter your note here</textarea>
+        </form>
         </div>
+        
       </div>
     </div>
 
