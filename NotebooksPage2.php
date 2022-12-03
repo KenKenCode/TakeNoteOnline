@@ -35,6 +35,12 @@
         <form action="" method="" id="noteForm">
           <input type="text" id="noteTitle" name="titleName" placeholder="Note Title">
           <textarea id="noteContent" name="contentName" form="noteForm">Enter your note here</textarea>
+          
+          <div id="advancedEditorAndSubmit">
+          <button id="advancedNoteEditor" style="margin-left: 15px;"> Advanced Editor </button>
+          <input id="submitNote" type="submit" value="+" style="margin-left: 150px; font-size: 30px;">
+          </div>
+          
         </form>
         </div>
         

@@ -112,6 +112,18 @@ nav {
     resize: none;
 }
 
+
+
+#advancedEditorAndSubmit {
+    
+    width: 50%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
+
+
+
 /*
 #titleAndContent > * {
     padding: 20px 0;
@@ -121,6 +133,8 @@ nav {
 }
 
 */
+
+
 table, th, tr, td {
     /* th = table header, tr = table row, td = table cell/table data */
 	border: 2px solid;
