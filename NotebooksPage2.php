@@ -21,9 +21,9 @@
           <i class = "bx bx-menu bx-md"></i>
         </div>
         <ul class = "nav-links">
-          <li><a href = "#">Home</a></li>
-          <li><a href = "#">Notebooks</a></li>
-          <li><a href = "#">Extras</a></li>
+          
+          <li><a href = "NotebooksPage2.php">Notebooks</a></li>
+          <li><a href = "https://www.google.com/">Extras</a></li>
         </ul>
       </div>
     </nav>
@@ -49,6 +49,8 @@
 
     <div id="displayNotes">
       Hi
+      <br>
+      
     </div>
 
     <script src = "NotebooksPage2Script.js"></script>
