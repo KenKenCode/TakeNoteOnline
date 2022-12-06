@@ -15,7 +15,14 @@
     <!--For icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    
+    <script>
+        $(document).ready(function() {
+     openModal = function() {
+         $("#speechToTextModal").modal({show:true});
+         $("#ocrModal").modal({show:true});
+     }
+ });
+    </script>
 </head>
 <body>
 
@@ -35,21 +42,26 @@
 
     <div id="extraFeatures">
 
-        <div id="speechToTextFeature" data-toggle="modal" data-target="#speechToTextModal">
-            Speech To Text
+        <div id="speechToTextFeature" >
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="openModal();">
+        Speech To Text </button>
         </div>    
 
-        <div id="ocrFeature" data-toggle="modal" data-target="#ocrModal">
-            OCR
+        <div id="ocrFeature" >
             
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ocrModal">
+            OCR </button>
         </div>
             
-        <div id="dictionaryFeature" data-toggle="modal" data-target="#dictionaryModal">
-            dictionary
+        <div id="dictionaryFeature" >
+            
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#dictionaryModal">
+            dictionary </button>
         </div>
 
-        <div id="calculatorFeature" data-toggle="modal" data-target="#calculatorModal">
-            calculator
+        <div id="calculatorFeature" >
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#calculatorModal">
+            calculator </button>
         </div>
 
         
