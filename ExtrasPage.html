@@ -16,6 +16,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <script>
+      //Start of script for speech to text
         /* JS comes here */
 		    function runSpeechRecognition() {
 		        // get output div reference
@@ -46,6 +47,11 @@
                  // start recognition
                  recognition.start();
 	        }
+
+          //End of script for speech to text
+
+          //Start of script for OCR
+          
     </script>
 </head>
 <body>
@@ -131,7 +137,15 @@
         <h4 class="modal-title">optical character recognition</h4>
       </div>
       <div class="modal-body">
+        
         <p>Some text in the modal.</p>
+        <div id="ocrBody">
+          <h3>Testing OCR 4 using Tesseract.js for PHP</h3>
+          <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" />
+            <input type="submit" id="ocrButton"/>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

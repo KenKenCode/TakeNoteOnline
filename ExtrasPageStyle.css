@@ -105,6 +105,20 @@ nav {
     cursor: pointer;
 }
 
+/* START OF CSS FOR OCR */
+
+#ocrBody {
+    text-align: center;
+	font-family: arial;
+    
+}
+
+#ocrButton {
+    background-color: rgb(141, 236, 141);
+}
+
+/* END OF CSS FOR OCR */
+
 /* START OF CSS FOR SPEECH TO TEXT */
 #speechToTextBody {
     text-align: center;
@@ -131,6 +145,8 @@ nav {
 	text-align: center;
 }
 /* END OF CSS FOR SPEECH TO TEXT */
+
+
 
 @media (max-width: 600px) {
     /* If screen size is less than 600 pixels, then this CSS will apply */
