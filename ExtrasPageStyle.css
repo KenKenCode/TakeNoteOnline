@@ -27,7 +27,7 @@ nav {
     /* box-shadow: h-offset v-offset blur spread color */
 }
 
-.nav-inner {
+ .nav-inner {
     max-width: 1280px;
     padding: 0 1.5rem;
     margin: auto;
@@ -53,7 +53,7 @@ nav {
 .nav-links li a {
     display: block;
     padding: 1rem;
-    font-weight: 700;
+    font-weight: 1000;
     font-size: 1.25rem;
     color: #3d4756;
     text-decoration: none;
@@ -104,6 +104,33 @@ nav {
     text-align: center;
     cursor: pointer;
 }
+
+/* START OF CSS FOR SPEECH TO TEXT */
+#speechToTextBody {
+    text-align: center;
+	font-family: arial;
+}
+
+#speechToTextButton {
+    padding:10px;
+	background-color:#6a67ce;
+	color: #FFFFFF;
+	border: 0px;
+	cursor:pointer;
+	border-radius: 5px;
+}
+
+#speechToTextOutput {
+    margin-top:20px;
+	padding:10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	line-height:30px;
+    background-color:#3bde4e;
+	text-align: center;
+}
+/* END OF CSS FOR SPEECH TO TEXT */
 
 @media (max-width: 600px) {
     /* If screen size is less than 600 pixels, then this CSS will apply */
