@@ -23,7 +23,7 @@
         <ul class = "nav-links">
           
           <li><a href = "NotebooksPage2.php">Notebooks</a></li>
-          <li><a href = "https://www.google.com/">Extras</a></li>
+          <li><a href = "ExtrasPage.php">Extras</a></li>
         </ul>
       </div>
     </nav>

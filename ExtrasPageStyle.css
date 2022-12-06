@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    
+    font-family: "Open Sans", sans-serif;
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+nav {
+    
+    background: #f1faff;
+    color: #3d4756;
+    position: relative;
+    z-index: 10; /* determines the stack order of an element. If the element has higher z-index than another element, then it will be displayed on top of that element*/
+    box-shadow: 0 4px 20px 0 rgb(149, 232, 238); 
+    /*box-shadow: 0 0 32px 0 #cacde1;*/
+    /* box-shadow: h-offset v-offset blur spread color */
+}
+
+.nav-inner {
+    max-width: 1280px;
+    padding: 0 1.5rem;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-brand {
+    padding: 1rem 0;
+
+}
+
+.nav-links{
+    display: flex;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #3d4756;
+    text-decoration: none;
+}
+
+
+
+.nav-hamburger {
+    display: none; /* At screen size greater than 600 pixels, we will hide the hamburger menu */
+}
+
+#extraFeatures{
+    margin-top: 200px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+#ocrFeature {
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+#speechToTextFeature {
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+#calculatorFeature {
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+#dictionaryFeature {
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    /* If screen size is less than 600 pixels, then this CSS will apply */
+.nav-hamburger {
+    display: block;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: none;
+}
+
+.nav-links.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+} 
+
+#extraFeatures {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+}
+}
