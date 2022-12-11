@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extras</title>
-    <link rel = "stylesheet" href = "ExtrasPageStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="ExtrasPageStyle.css">
 
+    <title>Extras</title>
+    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -74,24 +75,24 @@
 
         <div id="speechToTextFeature" >
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#speechToTextModal">
-        Speech To Text </button>
+        <img src="Images/speechToTextIcon.png" style ="width: 100px; height: 50px;"></button>
         </div>    
 
         <div id="ocrFeature" >
             
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ocrModal">
-            OCR </button>
+        <img src="Images/opticalCharacterRecognitionIcon.png" style ="width: 100px; height: 50px;"></button>
         </div>
             
         <div id="dictionaryFeature" >
             
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#dictionaryModal">
-            dictionary </button>
+        <img src="Images/dictionaryIcon.png" style ="width: 70px; height: 50px;"></button>
         </div>
 
         <div id="calculatorFeature" >
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#calculatorModal">
-            calculator </button>
+        <img src="Images/calculatorIcon.png" style ="width: 70px; height: 50px;"></button>
         </div>
 
         
@@ -105,12 +106,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">speech to text</h4>
+        <h4 class="modal-title">Speech-to-Text</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>Device permission access:<br>*Camera</p>
         <div id="speechToTextBody">
-          <h2>JavaScript Speech to Text</h2>
+          <h2>Speech to Text</h2>
         <p>Click on the below button and speak something...</p>
         <p><button type="button" onclick="runSpeechRecognition()">Speech to Text</button> &nbsp; <span id="action"></span></p>
         <div id="output" class="hide"></div>
@@ -134,13 +135,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">optical character recognition</h4>
+        <h4 class="modal-title">Optical Character Recognition</h4>
       </div>
       <div class="modal-body">
         
-        <p>Some text in the modal.</p>
+        <p>Device permission access:<br>*Microphone</p>
         <div id="ocrBody">
-          <h3>Testing OCR 4 using Tesseract.js for PHP</h3>
+          <h3>Optical Character Recognition using Tesseract.js</h3>
           <form action="upload.php" method="POST" enctype="multipart/form-data">
             <input type="file" name="image" />
             <input type="submit" id="ocrButton"/>
@@ -162,7 +163,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">dictionary</h4>
+        <h4 class="modal-title">Dictionary</h4>
       </div>
       <div class="modal-body">
         <p>Some text in the modal.</p>

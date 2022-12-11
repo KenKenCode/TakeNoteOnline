@@ -8,7 +8,7 @@
 }
 
 body {
-    
+   
     font-family: "Open Sans", sans-serif;
     background-image: url();
     background-position: center;
@@ -73,25 +73,20 @@ nav {
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 5px;
-    border-color: black;
+    border-color: red;
     border-style: solid;
-}
-
-#ocrFeature {
-    border-color: black;
-    border-style: solid;
-    text-align: center;
-    cursor: pointer;
 }
 
 #speechToTextFeature {
+    padding: 10px;
     border-color: black;
     border-style: solid;
     text-align: center;
     cursor: pointer;
 }
 
-#calculatorFeature {
+#ocrFeature {
+    padding: 10px;
     border-color: black;
     border-style: solid;
     text-align: center;
@@ -99,11 +94,22 @@ nav {
 }
 
 #dictionaryFeature {
+    padding: 10px;
     border-color: black;
     border-style: solid;
     text-align: center;
     cursor: pointer;
 }
+
+#calculatorFeature {
+    padding: 10px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+
 
 /* START OF CSS FOR OCR */
 
