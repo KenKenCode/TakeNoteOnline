@@ -24,6 +24,7 @@
           
           <li><a href = "NotebooksPage2.php">Notebooks</a></li>
           <li><a href = "ExtrasPage.html">Extras</a></li>
+          
         </ul>
       </div>
     </nav>
