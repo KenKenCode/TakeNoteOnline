@@ -1,3 +1,6 @@
+<?php
+header('Access-Control-Allow-Origin: *');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,9 @@
 
     <!--For icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--Tesseract.js-->
+    <script src='https://unpkg.com/tesseract.js@4.0.1/dist/tesseract.min.js'></script>
 
     <script>
       //Start of script for speech to text
@@ -51,6 +57,31 @@
 
           //End of script for speech to text
 
+
+          //Start of script for Optical Character Recognition
+
+          //Tesseract.recognize cant seem to read from local storage and can only read images from online URL. the php from ocr4 folder can maybe help.
+          //imgur links are problematic, might be because of the formatting of the image that is uploaded. It turns out that imgur links doesn't actually return the actual
+          //filename and file format of the uploaded image is not returned.
+          //So far, other links that have direct path to the actual image works.
+
+        function OCRConvert() {
+          try {
+            let inputVal = document.getElementById("imageURL").value;
+            Tesseract.recognize(
+            inputVal,
+            'eng',
+            { logger: m => console.log(m) }
+            ).then(({ data: { text } }) => {
+            console.log(text);
+  
+             document.getElementById("message").innerHTML = text;
+            });
+          } catch(error) {
+              alert(error);
+          }
+
+}
           
           
     </script>
@@ -137,94 +168,15 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Optical Character Recognition</h4>
       </div>
-      <div class="modal-body">
-        <script src='https://unpkg.com/tesseract.js@4.0.1/dist/tesseract.min.js'></script>
-        <p>Device permission access:<br>*Microphone</p>
-        <div id="ocrBody">
-          <!--
-          <label for="input_image">Choose an Image File:</label>
-        <input type="file" id="input_image" name="input_image"/>
-        <br/>
-        <br/>
-        <textarea id="image-text"></textarea>
-		<br/><br/>
-		<progress id="progressbar" min="0" max="1" value="0"/>
+      <div class="modal-body" style="text-align: center;">
+        <p>Optical Character Recognition</p>
+        <p>Paste the full online link of the photo that you want to scan<br>example: https://www.google.com/images/earth-description.png</p>
+        <input type="text" id="imageURL">
+    
+        <button type="button" onclick="OCRConvert();">Scan and convert</button>
+        <div id="message">
 
-    <script>
-      // Add an event listener for when the user selects an image file
-document.querySelector('input[type="file"]').addEventListener('change', function(event) {
-  // Get the selected image file
-  var file = event.target.files[0];
-
-  // Create a new FileReader instance
-  var reader = new FileReader();
-
-  // Set up a handler for when the file has been read
-  reader.onload = function() {
-    // Get the file contents as a base64-encoded string
-    var base64String = reader.result;
-
-    // Pass the base64 string to Tesseract.js for OCR
-    Tesseract.recognize(base64String)
-      .then(function(result) {
-        // Do something with the recognized text
-        var contentArea = document.getElementById('image-text');
-					contentArea.innerHTML = result.text;
-        console.log(result.text);
-      });
-  };
-
-  // Read the image file as a base64-encoded string
-  reader.readAsDataURL(file);
-});
-    </script>
-  -->
-
-  <html>
-    <head>
-        <title>Tesseract-JS Demo</title>
-		<meta charset="UTF-8">
-		<meta name="description" content="A simple demonstration of Tesseract JS">
-		<meta name="keywords" content="Tesseract,OCR,JavaScript">
-		<meta name="author" content="Akshay Khale">
-    </head>
-    <body>
-        <label for="input_image">Choose an Image File:</label>
-        <input type="file" id="input_image" name="input_image"/>
-        <br />
-        <br />
-        <textarea id="image-text"></textarea>
-		<br/><br/>
-		<progress id="progressbar" min="0" max="1" value="0"/>
-    </body>
-	<script src='https://cdn.rawgit.com/naptha/tessdata/gh-pages/3.02/eng.traineddata.gz'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            var input_image = document.getElementById('input_image');
-            input_image.addEventListener('change', handleInputChange);
-        });
-
-        function handleInputChange(event){
-            var input = event.target;
-            var file = input.files[0];
-            console.log(file);
-            Tesseract.recognize(file)
-                .progress(function(message){
-					document.getElementById('progressbar').value = message.progress;
-                    console.log(message);
-                })
-                .then(function(result){
-                    var contentArea = document.getElementById('image-text');
-					contentArea.innerHTML = result.text;
-                    console.log(result);
-                })
-                .catch(function(err){
-                    console.error(err);
-                });
-        }
-    </script>
-</html>
-        </div>
+    </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

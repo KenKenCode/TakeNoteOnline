@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://unpkg.com/tesseract.js@4.0.1/dist/tesseract.min.js'></script>
+</head>
+<body style="text-align: center;">
+
+    <input type="text" id="imageURL">
+
+    
+    <button type="button" onclick="OCRConvert();">OCR</button>
+    <div id="message">
+
+    </div>
+    <script>
+
+
+//Tesseract.recognize cant seem to read from local storage and can only read images from online URL. the php from ocr4 folder can maybe help.
+//imgur links are problematic, might be because of the formatting of the image that is uploaded. It turns out that imgur links doesn't actually return the actual
+//filename and file format of the uploaded image is not returned.
+//So far, other links that have direct path to the actual image works.
+
+function OCRConvert() {
+try {
+    let inputVal = document.getElementById("imageURL").value;
+    Tesseract.recognize(
+  inputVal,
+  'eng',
+  { logger: m => console.log(m) }
+).then(({ data: { text } }) => {
+  console.log(text);
+  
+  document.getElementById("message").innerHTML = text;
+});
+} catch(error) {
+    alert(error);
+}
+
+}
+
+    </script>
+
+</body>
+</html>
