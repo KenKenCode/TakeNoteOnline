@@ -17,6 +17,8 @@
     <nav>
       <div class = "nav-inner">
         <h1 class = "nav-brand">Welcome</h1>
+        <h1>Your user ID is: </h1>
+        <!-- Add php code here to retrieve user id of username -->
         <div class="nav-hamburger" onclick = "showMenu()">
           <i class = "bx bx-menu bx-md"></i>
         </div>
