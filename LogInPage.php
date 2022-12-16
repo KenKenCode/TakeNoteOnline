@@ -1,33 +1,37 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+error_reporting(E_ALL);
 session_start();
 
 $conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['login'])) {
 
-    if(empty(trim['userNameName']) && empty(trim($_POST['passwordName']))) {
+    
+    if(empty(trim($_POST['userNameName'])) && empty(trim($_POST['passwordName']))) {
         echo '<script type="text/javascript"> alert("Input fields must have values (email, password)"); </script>';
     } else {
     //set variables for sql query
-    $usernameSignIn = mysqli_real_escape_string($conn, $_POST['userNameID']);
-    $passwordSignIn = mysqli_real_escape_string($conn, $_POST['passwordID']);
+    $usernameSignIn = mysqli_real_escape_string($conn, $_POST['userNameName']); //name of username input
+    $passwordSignIn = mysqli_real_escape_string($conn, $_POST['passwordName']); //name of password input
 
-    $res = $conn->query("SELECT student_password FROM registrationforlogin WHERE student_name = '$usernameSignIn'");
+    $res = $conn->query("SELECT student_password FROM registrationforlogin WHERE student_username = '$usernameSignIn'");
     
-    $hashed_pass = $res->fetch_assoc()['student_password'];
+    $hashed_pass = $res->fetch_assoc()['passwordName'];
 
     if(!password_verify($passwordSignIn, $hashed_pass)) {
 
-        $login_error = "Wrong password. Please try again";
+        echo '<script type="text/javascript"> alert("something went wrong"); </script>';
 
     } else {
-        $login_success = "Login Successful";
-        //header('Location:notebookspage2.php');
+        echo '<script type="text/javascript"> alert("logged in"); </script>';
+        header('Location:notebookspage2.php');
     }
 
 }
 } 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,19 +52,19 @@ if(isset($_POST['submit'])) {
             <br />
             <form action="" method="POST">
                 
-                <label for="emailID">Email: </label><br /> <!--label for will bind to input element's id-->
+                <label for="userNameID">Username: </label><br /> <!--label for will bind to input element's id-->
                 <input type="text" id="userNameID" name="userNameName" placeholder="Type your username" class = "logInTextbox"> <br />
 
                 <label for="passwordID">Password: </label><br /> <!--label for will bind to input element's id-->
                 <input type="password" id="passwordID" name="passwordName" placeholder="Type your password" class = "logInTextbox"> <br />
-
-                <input type="submit" value="Log-In" class="logInButton">                      
+                
+                <input type="submit" name="login" class="logInButton">                      
             </form>
             
             <hr>
 
             <footer>
-                <p>New account? <a href="www.registertakenoteuser.com" target="_blank">Register.</a></p>
+                <p>New account? <a href="RegistrationPage.php" target="_blank">Register.</a></p>
                 <p>Terms and Conditions</p>
             </footer>
         </main>

@@ -75,20 +75,24 @@ nav {
     gap: 5px;
     border-color: red;
     border-style: solid;
+    border-radius: 20px;
 }
 
 #speechToTextFeature {
     padding: 10px;
     border-color: black;
     border-style: solid;
+    border-radius: 20px;
     text-align: center;
     cursor: pointer;
+
 }
 
 #ocrFeature {
     padding: 10px;
     border-color: black;
     border-style: solid;
+    border-radius: 20px;
     text-align: center;
     cursor: pointer;
 }
@@ -97,6 +101,7 @@ nav {
     padding: 10px;
     border-color: black;
     border-style: solid;
+    border-radius: 20px;
     text-align: center;
     cursor: pointer;
 }
@@ -105,10 +110,28 @@ nav {
     padding: 10px;
     border-color: black;
     border-style: solid;
+    border-radius: 20px;
     text-align: center;
     cursor: pointer;
 }
 
+#budgetTrackerFeature {
+    padding: 10px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#imageGalleryFeature {
+    padding: 10px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
 
 
 /* START OF CSS FOR OCR */
