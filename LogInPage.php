@@ -3,35 +3,52 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
+$connect = mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
-if(isset($_POST['login'])) {
-
-    
-    if(empty(trim($_POST['userNameName'])) && empty(trim($_POST['passwordName']))) {
-        echo '<script type="text/javascript"> alert("Input fields must have values (email, password)"); </script>';
+if (isset($_POST["login"])) {
+    if (empty($_POST["userNameName"]) || empty($_POST["passwordName"])) {
+        echo '<script>alert("Both Fields are required")</script>';
     } else {
-    //set variables for sql query
-    $usernameSignIn = mysqli_real_escape_string($conn, $_POST['userNameName']); //name of username input
-    $passwordSignIn = mysqli_real_escape_string($conn, $_POST['passwordName']); //name of password input
+        $username = mysqli_real_escape_string($connect, $_POST["userNameName"]);
+        $password = mysqli_real_escape_string($connect, $_POST["passwordName"]);
 
-    $res = $conn->query("SELECT student_password FROM registrationforlogin WHERE student_username = '$usernameSignIn'");
-    
-    $hashed_pass = $res->fetch_assoc()['passwordName'];
+        $queryString = "SELECT * FROM registrationforlogin WHERE studentUsername = '$username'";
+        $query = mysqli_query($connect, "SELECT * FROM registrationforlogin WHERE studentUsername = '$username'"); //The username input value is being stored to the database with a pre space. For example: ' kenneth', this is why we have to modify this query to add a space before $username.
+        //other columns' spacing doesn't seem to have a problem. Only studentUsername. I have also tried to re-build this table on other databases but the same issue still persists.
+        //Dec. 17, 2022 3:09pm: The problem seems to be from my html form inputs, I tried directly inserting a record into registrationforlogin table in mysql shell, and the spacing-issue did not come up. The spacing issue seems to only come up when I insert from RegistrationPage.php
+        //As a suggestion, we can use other column for logging in such as studentName (unique), and studentEmail (unique) since they have no spacing-issue.
+        //Dec. 17, 2022 3:14pm, problem with RegistrationPage.php is now resolved. The SQL 'INSERT INTO' query has a pre-space on ' $studentUsername'
 
-    if(!password_verify($passwordSignIn, $hashed_pass)) {
-
-        echo '<script type="text/javascript"> alert("something went wrong"); </script>';
-
-    } else {
-        echo '<script type="text/javascript"> alert("logged in"); </script>';
-        header('Location:notebookspage2.php');
+        $studentID = mysqli_query($connect, "SELECT * FROM registrationforlogin WHERE studentUsername = '$username'");
+        
+        $result = mysqli_query($connect, $queryString);
+        
+        if (mysqli_num_rows($result) > 0) {
+            $row2 = mysqli_fetch_assoc($studentID);
+                    $_SESSION["username"] = $row2['studentUsername'];
+                    $_SESSION["userID"] = $row2['studentID'];
+                    header("location:NotebooksPage2.php");
+            /*
+            while ($row = mysqli_fetch_array($result)) {
+               
+                if (password_verify($password, $row["studentPassword"])) {
+                    //return true;  
+                    $row2 = mysqli_fetch_assoc($studentID);
+                    $_SESSION["username"] = $username;
+                    $_SESSION["userID"] = $row2['studentID'];
+                    header("location:NotebooksPage2.php");
+                } else {
+                    //return false;  
+                    echo '<script>alert("Wrong User Details")</script>';
+                }
+            }
+            */
+        } else {
+            echo '<script>alert("Wrong User Details 2")</script>';
+        }
     }
-
+    
 }
-} 
-
-
 ?>
 
 <!DOCTYPE html>

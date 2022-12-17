@@ -3,7 +3,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb2");
+$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
 if(isset($_POST['register'])) {
 
@@ -21,7 +21,7 @@ if(isset($_POST['register'])) {
     //hash the password
     $encrypt_password = password_hash($passwordRegister, PASSWORD_DEFAULT);
     
-    $conn->query("INSERT INTO registrationforlogin (student_name, student_username, student_email, student_phone, student_level, student_password) VALUES ('$studentNameRegister', ' $userNameRegister', '$emailNameRegister', '$phoneNumberNameRegister', '$studentLevelNameRegister', '$encrypt_password')");
+    $conn->query("INSERT INTO registrationforlogin (studentName, studentUsername, studentEmail, studentPhone, studentLevel, studentPassword) VALUES ('$studentNameRegister', '$userNameRegister', '$emailNameRegister', '$phoneNumberNameRegister', '$studentLevelNameRegister', '$encrypt_password')");
 
     if($conn->affected_rows != 1) {
 		echo '<script type="text/javascript"> alert("something went wrong"); </script>';
