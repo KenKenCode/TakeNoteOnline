@@ -3,7 +3,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");   
+$conn=mysqli_connect("localhost", "root", "root", "tnstudentregistrationdb");   
 
 if(isset($_SESSION["student_username"])) {
     header("location: NotebooksPage2.php");

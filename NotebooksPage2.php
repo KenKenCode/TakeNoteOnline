@@ -3,9 +3,30 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
+$conn=mysqli_connect("localhost", "root", "root", "tnstudentregistrationdb");
 
 $retrieveNotes = "SELECT * FROM studentNotes WHERE studentUsername = '" . $_SESSION['username'] . "'";
+
+if (isset($_POST['submitNoteName'])) {
+  if(empty(trim($_POST['titleName'])) && empty(trim($_POST['contentName']))) {
+    echo '<script type="text/javascript"> alert("Input fields must have values"); </script>';
+} else {
+    $studentIDNote = mysqli_real_escape_string($conn, $_SESSION['userID']);;
+    $studentUsernameNote = mysqli_real_escape_string($conn, $_SESSION['username']);;
+    $studentContentNote = mysqli_real_escape_string($conn, $_POST['contentName']);;
+    $studentTitleContentNote = mysqli_real_escape_string($conn, $_POST['titleName']);
+
+    $conn->query("INSERT INTO studentNotes (studentID, studentUsername, notes, noteTitle) VALUES ('$studentIDNote', '$studentUsernameNote', '$studentContentNote', '$studentTitleContentNote')");
+
+    if($conn->affected_rows != 1) {
+      echo '<script type="text/javascript"> alert("something went wrong"); </script>';
+    } else {
+      echo '<script type="text/javascript"> alert("note insertion successful"); </script>';
+    }
+
+}
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +53,7 @@ echo '  user ID is:  ';
 echo $_SESSION['userID']; ?>');
 </script>
         <h1 class = "nav-brand">Welcome</h1>
+        
         <h1>Your user ID is: </h1>
         <?php
           echo $_SESSION['userID'];
@@ -53,17 +75,18 @@ echo $_SESSION['userID']; ?>');
       </div>
     </nav>
 
+    <div id="noteContainer">
     <div id="addNote">
       <div id="noteTitleAndContentContainer">
         
         <div id="titleAndContent">
-        <form action="" method="" id="noteForm">
+        <form action="" method="POST" id="noteForm">
           <input type="text" id="noteTitle" name="titleName" placeholder="Note Title">
-          <textarea id="noteContent" name="contentName" form="noteForm">Enter your note here</textarea>
+          <textarea id="noteContent" name="contentName" placeholder="Enter your note here" form="noteForm"></textarea>
           
           <div id="advancedEditorAndSubmit">
           <button id="advancedNoteEditor" style="margin-left: 15px;"> Advanced Editor </button>
-          <input id="submitNote" type="submit" value="+" style="margin-left: 150px; font-size: 30px;">
+          <input type="submit" id="submitNote" name="submitNoteName"  value="+" style="margin-left: 150px; font-size: 30px;">
           </div>
           
         </form>
@@ -80,7 +103,7 @@ echo $_SESSION['userID']; ?>');
  ?>
 <table>
 <tr>
-<th>Notes</th>
+<th style="background-color: green;">Notes</th>
 </tr>
 
 <?php
@@ -89,9 +112,14 @@ while($row = mysqli_fetch_array($result)){
 <tr>
 
 <td><?php echo $row['notes']; ?> </td>
+<!--Repetition of html elements under this while column is possible, and inidividual buttons for each record will display in this code-->
+<!--<button><?php echo $row['notes']; ?> </button>-->
+
 </tr>
 <?php
 }
+
+
 	}
  }
 echo "</table>";
@@ -99,7 +127,31 @@ echo "</table>";
       <br>
       
     </div>
+<br>
+<br>
+<br>
+    <div style="background-color: yellow">
+    first column
+</div>
 
+<div style="background-color: blue">
+    second column
+</div>
+
+<div style="background-color: red">
+    third column
+</div>
+
+<div style="background-color: green">
+    fourth column
+</div>
+
+<div style="background-color: green">
+    fifth column 
+</div>
+
+
+</div>
     <script src = "NotebooksPage2Script.js"></script>
 
     </body>

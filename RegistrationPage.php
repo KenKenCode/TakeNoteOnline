@@ -3,7 +3,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
+$conn=mysqli_connect("localhost", "root", "root", "tnstudentregistrationdb");
 
 if(isset($_POST['register'])) {
 
@@ -12,6 +12,7 @@ if(isset($_POST['register'])) {
     } else {
     //set variables for sql query
     $studentNameRegister = mysqli_real_escape_string($conn, $_POST['studentNameName']);
+    //$studentNameRegister = mysqli_real_escape_string($conn, $_POST[$_SESSION['userid']]);
     $userNameRegister = mysqli_real_escape_string($conn, $_POST['userNameName']);
     $emailNameRegister = mysqli_real_escape_string($conn, $_POST['emailName']);
     $phoneNumberNameRegister = mysqli_real_escape_string($conn, $_POST['phoneNumberName']);

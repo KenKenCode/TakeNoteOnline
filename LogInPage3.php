@@ -1,7 +1,7 @@
 <?php  
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
- $connect = mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");  
+ $connect = mysqli_connect("localhost", "root", "root", "tnstudentregistrationdb");  
  session_start();  
  if(isset($_SESSION["username"]))  
  {  
