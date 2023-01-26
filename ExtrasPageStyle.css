@@ -175,6 +175,32 @@ nav {
 }
 /* END OF CSS FOR SPEECH TO TEXT */
 
+/* START OF CSS FOR CALCULATOR */
+#calcu {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calculatorButton {
+    width: 100%;
+    padding: 20px 20px;
+    background-color: rgb(177, 93, 187);
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+#result {
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid black;
+}
 
 
 @media (max-width: 600px) {

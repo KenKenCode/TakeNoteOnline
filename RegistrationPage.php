@@ -27,7 +27,7 @@ if(isset($_POST['register'])) {
     if($conn->affected_rows != 1) {
 		echo '<script type="text/javascript"> alert("something went wrong"); </script>';
 	} else {
-		echo '<script type="text/javascript"> alert("hasing successful"); </script>';
+		echo '<script type="text/javascript"> alert("sign up successful"); </script>';
 	}
 
 }

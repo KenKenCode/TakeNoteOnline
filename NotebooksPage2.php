@@ -47,12 +47,14 @@ if (isset($_POST['submitNoteName'])) {
 
     <nav>
       <div class = "nav-inner">
+
       <script>
+        //alertdialog
 alert('<?php echo $_SESSION['username'];
 echo '  user ID is:  ';
 echo $_SESSION['userID']; ?>');
 </script>
-        <h1 class = "nav-brand">Welcome</h1>
+        <h1 class = "nav-brand">TakeNote</h1>
         
         <h1>Your user ID is: </h1>
         <?php
@@ -69,7 +71,7 @@ echo $_SESSION['userID']; ?>');
         <ul class = "nav-links">
           
           <li><a href = "NotebooksPage2.php">Notebooks</a></li>
-          <li><a href = "ExtrasPage.html">Extras</a></li>
+          <li><a href = "ExtrasPage.php">Extras</a></li>
           
         </ul>
       </div>
@@ -96,7 +98,6 @@ echo $_SESSION['userID']; ?>');
     </div>
 
     <div id="displayNotes">
-      HI
       <?php
  if ($result = mysqli_query($conn, $retrieveNotes)) {
 	if (mysqli_num_rows($result) > 0) {
@@ -130,6 +131,8 @@ echo "</table>";
 <br>
 <br>
 <br>
+
+<!--
     <div style="background-color: yellow">
     first column
 </div>
@@ -150,7 +153,7 @@ echo "</table>";
     fifth column 
 </div>
 
-
+-->
 </div>
     <script src = "NotebooksPage2Script.js"></script>
 
