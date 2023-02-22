@@ -192,7 +192,7 @@ echo $_SESSION['userID']; ?>');
         </div>
 
         <div id="imageGalleryFeature">
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#budgetTrackerModal">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#imageGalleryModal">
           <img src="Images/imageGalleryIcon.png" style ="width: 70px; height: 50px;"></button>
           <p>Image Gallery</p>
         </div>

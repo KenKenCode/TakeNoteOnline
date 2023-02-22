@@ -40,26 +40,30 @@ if(isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="RegistrationPageStyle.css">
     <title>Register</title>
+
+    
 </head>
 <body>
 <main>
+    <div class="registerBox">
             <h1>Registration</h1>
             <hr>
             <br />
             <form action="" method="POST">
 
                 <label for="studentNameID">Full name: </label><br /> <!--label for will bind to input element's id-->
-                <input type="text" id="studentNameID" name="studentNameName" placeholder="Type your full name" class = "logInTextbox" required> <br />
+                <input type="text" id="studentNameID" name="studentNameName" placeholder="Type your full name" class = "registerTextBox" required> <br />
                 
                 <label for="userNameID">User name: </label><br /> <!--label for will bind to input element's id-->
-                <input type="text" id="userNameID" name="userNameName" placeholder="Type your username" class = "logInTextbox" required> <br />
+                <input type="text" id="userNameID" name="userNameName" placeholder="Type your username" class = "registerTextBox" required> <br />
 
                 <label for="emailID">Email: </label><br /> <!--label for will bind to input element's id-->
-                <input type="text" id="emailID" name="emailName" placeholder="Type your email" class = "logInTextbox" required> <br />
+                <input type="text" id="emailID" name="emailName" placeholder="Type your email" class = "registerTextBox" required> <br />
 
                 <label for="phoneNumberID">Phone number: </label><br /> <!--label for will bind to input element's id-->
-                <input type="number" id="phoneNumberID" name="phoneNumberName" placeholder="Type your phone number" class = "logInTextbox" required> <br />
+                <input type="number" id="phoneNumberID" name="phoneNumberName" placeholder="Type your phone number" class = "registerTextBox" required> <br />
 
                 <label for="studentLevelID">Student level: </label>
                 <select name="studentLevelName" id="studentLevelID">
@@ -72,7 +76,7 @@ if(isset($_POST['register'])) {
                 </br>
 
                 <label for="passwordID">Password: </label><br /> <!--label for will bind to input element's id-->
-                <input type="password" id="passwordID" name="passwordName" placeholder="Type your password" class = "logInTextbox"> <br />
+                <input type="password" id="passwordID" name="passwordName" placeholder="Type your password" class = "registerTextBox"> <br />
 
                 <input type="submit" value="registration" name="register" class="logInButton">                      
             </form>
@@ -80,9 +84,11 @@ if(isset($_POST['register'])) {
             <hr>
 
             <footer>
-                <p>New account? <a href="RegistrationPage.php" target="_blank">Register.</a></p>
+                <p>Already have an account? <a href="LoginPage.php">Log-in.</a></p>
                 <p>Terms and Conditions</p>
             </footer>
+</div>
         </main>
+        
 </body>
 </html>

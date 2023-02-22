@@ -38,6 +38,10 @@ if (isset($_POST['submitNoteName'])) {
     <title>Notebooks</title>
     <link rel = "stylesheet" href = "NotebooksPage2Style.css"/>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!--For icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -104,18 +108,21 @@ echo $_SESSION['userID']; ?>');
  ?>
 <table>
 <tr>
+<th style="background-color: pink; display: none;">Note ID</th>
 <th style="background-color: green;">Notes</th>
+<th style="background-color: blue;">Action</th>
 </tr>
 
 <?php
 while($row = mysqli_fetch_array($result)){
 ?>
 <tr>
-
-<td><?php echo $row['notes']; ?> </td>
+<td style="display:none;"><?php echo $row["noteid"]?></td>
+<td><a href="https://www.google.com"><?php echo $row['noteTitle']; ?> </a></td>
 <!--Repetition of html elements under this while column is possible, and inidividual buttons for each record will display in this code-->
-<!--<button><?php echo $row['notes']; ?> </button>-->
 
+<td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        View</button></td>
 </tr>
 <?php
 }
@@ -155,7 +162,37 @@ echo "</table>";
 
 -->
 </div>
-    <script src = "NotebooksPage2Script.js"></script>
 
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+	  
+	  <div class="mr-auto" style="float: left;">
+		 <button type="button" class="btn btn-primary" > Add to new note</button>
+        <button type="button" class="btn btn-primary" >Add to existing note</button>
+		
+		</div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		
+      </div>
+
+    </div>
+  </div>
+</div>
+    <script src = "NotebooksPage2Script.js"></script>
     </body>
     </html>
