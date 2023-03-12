@@ -3,7 +3,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL);
 session_start();
 
-$connect = mysqli_connect("localhost", "root", "root", "tnstudentregistrationdb");
+$connect = mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
 if (isset($_POST["login"])) {
     if (empty($_POST["userNameName"]) || empty($_POST["passwordName"])) {

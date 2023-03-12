@@ -21,7 +21,7 @@ nav {
     background: #f1faff;
     color: #3d4756;
     position: relative;
-    z-index: 10; /* determines the stack order of an element. If the element has higher z-index than another element, then it will be displayed on top of that element*/
+    z-index: 5; /* determines the stack order of an element. If the element has higher z-index than another element, then it will be displayed on top of that element*/
     box-shadow: 0 4px 20px 0 rgb(149, 232, 238); 
     /*box-shadow: 0 0 32px 0 #cacde1;*/
     /* box-shadow: h-offset v-offset blur spread color */
@@ -77,6 +77,7 @@ nav {
     background-color: aqua; /* activate this to see the area of #noteContainer */
 }
 
+
 #addNote {
     margin-top: 100px;
     margin-left: 70px;
@@ -89,16 +90,23 @@ nav {
 
 }
 
+#coverTable {
+    display: absolute;
+    z-index: 22;
+}
+
 #displayNotes {
+    
     margin-top: 50px;
     margin-right: 40px;
-    width: 1000x;
+    
     grid-column: 2 / span 3; /* Element starts at 2nd column and spans/occupies 3 columns to the right */
     grid-row: 1 / span 2; /* element starts 1 row and spans/occupies 2 columns */
     /*A very helpful reference for grid: https://www.w3schools.com/css/css_grid_item.asp*/
     border-color: blue;
     border-style: solid;
 }
+
 
 #noteTitleAndContentContainer{
     padding: 5px;
@@ -110,15 +118,15 @@ nav {
 
 #noteForm {
     padding: 10px 0;
+    width: 100%;
     text-align: center;
     background-color: rgba(211, 27, 27, 0.8);
     font-size: 30px;
 }
 
 #noteTitle {
-
-    width: 90%;
-    text-align: center;
+    width: 90% !important;
+    text-align: center !important;
 }
 
 #noteContent {
@@ -129,8 +137,7 @@ nav {
 
 
 
-#advancedEditorAndSubmit {
-    
+#advancedEditorAndSubmit{
     width: 50%;
     display: grid;
     grid-template-columns: auto auto;
