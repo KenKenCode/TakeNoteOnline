@@ -14,8 +14,9 @@ if (isset($_POST['submitNoteName'])) {
     $studentIDNote = mysqli_real_escape_string($conn, $_SESSION['userID']);;
     $studentUsernameNote = mysqli_real_escape_string($conn, $_SESSION['username']);;
     $studentContentNote = mysqli_real_escape_string($conn, $_POST['contentName']);;
+    //$studentContentNote2 = stripslashes(str_replace('<br />\r\n',PHP_EOL,$studentContentNote));
+    
     $studentTitleContentNote = mysqli_real_escape_string($conn, $_POST['titleName']);
-
     $conn->query("INSERT INTO studentNotes (studentID, studentUsername, notes, noteTitle) VALUES ('$studentIDNote', '$studentUsernameNote', '$studentContentNote', '$studentTitleContentNote')");
 
     if($conn->affected_rows != 1) {
@@ -55,8 +56,8 @@ if (isset($_POST['submitNoteName'])) {
 </head>
 <body>
 
-    <nav>
-      <div class = "nav-inner">
+    <nav class="navbar navbar-default">
+      <div class = "nav-inner container-fluid">
 
       <script>
         //alertdialog
@@ -64,7 +65,7 @@ alert('<?php echo $_SESSION['username'];
 echo '  user ID is:  ';
 echo $_SESSION['userID']; ?>');
 </script>
-        <h1 class = "nav-brand">TakeNote</h1>
+        <h1 class = "nav-brand navbar-header">TakeNote</h1>
         
         <h1>Your user ID is: </h1>
         <?php
