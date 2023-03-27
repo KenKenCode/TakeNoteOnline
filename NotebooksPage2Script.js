@@ -9,12 +9,12 @@ const showMenu = () => {
 $(document).ready(
   function showNote(){
     $('.noteIDClass').click(function(){
-  id_note = $(this).attr('id') //href is also compatible replacement for id.
+        id_note = $(this).attr('id') //href is also compatible replacement for id.
   
         $.ajax({url: "selectNote.php",
         method:'post',
         data:{
-          note_id:id_note
+          note_id:id_note //will be used for selectNote.php POST method
         },
         success: function(result){
 
@@ -31,9 +31,19 @@ $(document).ready(
     });
 
 
-    
-    
+    $("#searchForNotesID").click(function(){
+      $("#tableForNotes").hide();
+      $("#searchForNotes").show();
 
+
+    });
+    
+    $("#contentForNotesID").click(function(){
+      $("#tableForNotes").show();
+      $("#searchForNotes").hide();
+    });
+
+    $("#searchForNotes").hide();
 }
 
 
@@ -43,7 +53,3 @@ $(document).ready(
 );
 
 
-function giveWarning() {
-  alert("Warning message.");
-  document.write ("Warning message.");
-} 

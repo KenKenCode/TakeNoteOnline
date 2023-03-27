@@ -28,19 +28,7 @@ if (isset($_POST['submitNoteName'])) {
 
 }
 
-$noteSearchResult = '';
 
-if(isset($_POST['searchNoteInput'])) {
-
-if(!empty($_POST['searchNoteInput'])) {
-$search = $_POST['searchNoteInput'];
-$searchQuery = $conn->prepare("SELECT notes FROM studentnotes WHERE notes LIKE '%$search' OR notetitle LIKE '%$search'");
-
-} else {
-  $searchNoteRetrievalError = 'Error retrieving the note';
-}
-
-}
 
 ?>
 
@@ -120,39 +108,23 @@ echo $_SESSION['userID']; ?>');
     </div>
 
     
+    
+
     <div id="displayNotes">
 
-    <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-  </ul>
+    <div class="tab-content" class="tab-pane fade in active">
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="tab-pane fade in active">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="tab-pane fade in active">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-    <div id="menu3" class="tab-pane fade in active">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-  </div>
-      <?php
+    <ul class="nav nav-tabs">
+    <li class="active"><a id="contentForNotesID" data-toggle="tab" href="#tableForNotes">Notes</a></li>
+    <li><a id="searchForNotesID"  data-toggle="tab" href="#searchForNotes">Search</a></li>
+    </ul>
+
+<div id="tableForNotes">
+<?php
  if ($result = mysqli_query($conn, $retrieveNotes)) {
 	if (mysqli_num_rows($result) > 0) {
  ?>
-<div id="tableForNotes">
-<table>
+<table class="table table-striped table-hover col-sm-4">
 <tr>
 <th style="background-color: pink; display: none;">Note ID</th>
 <th style="background-color: green;">Notes</th>
@@ -164,7 +136,7 @@ while($row = mysqli_fetch_array($result)){
 ?>
 <tr>
 <td style="display:none;"><?php echo $row["noteid"]?></td>
-<td><a href="https://www.google.com"><?php echo $row['noteTitle']; ?> </a></td>
+<td><?php echo $row['noteTitle']; ?></td>
 <!--Repetition of html elements under this while column is possible, and individual buttons for each record will display in this code-->
 
 <td><button type="button" id='<?php echo $row["noteid"] ?>' class="btn btn-primary btn-lg noteIDClass" data-target="#myModal">
@@ -177,16 +149,61 @@ while($row = mysqli_fetch_array($result)){
 </tr>
 <?php
 }
-
-
 	}
  }
-echo "</table>";
+
 
 ?>
+</table>
 
       <br>
       
+    </div>
+</div>
+
+<div id="searchForNotes" class="tab-pane fade">
+
+<div class="container col-sm-12">
+    
+    <form class="form-horizontal" action="" method="post">
+    <div class="row">
+        <div class="form-group text-left" >
+            <label class="control-label col-sm-4 text-left" for="email"><b>Search Employee Information:</b>:</label>
+            <div class="col-sm-5" >
+              <input type="text" class="form-control" name="searchNoteInputText" placeholder="search here">
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" name="searchNoteInputButton" class="btn btn-primary btn-sm">Submit</button>
+            </div>
+        </div>
+        
+         
+    </div>
+    </form>
+    <br/><br/>
+    
+    <?php
+    if (isset($_POST['searchNoteInputText'])) {
+      $search = mysqli_real_escape_string($conn, $_POST['searchNoteInputText']);
+      $sql = "SELECT * FROM studentnotes WHERE notes LIKE '%$search%' AND studentUsername = '" . $_SESSION['username'] . "'";
+      $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      echo "<table>";
+      echo "<tr><th>Notes</th></tr>";
+      while ($row = mysqli_fetch_assoc($result)) {
+          echo "<tr>";
+          echo "<td>" . $row['notes'] . "</td>";
+          
+          echo "</tr>";
+      }
+      echo "</table>";
+  } else {
+      echo "No results found";
+  }
+}
+
+    ?>
+</div>
     </div>
 </div>
 <br>
@@ -273,7 +290,5 @@ echo "</table>";
 ?>
 
     <script src = "NotebooksPage2Script.js"></script>
-
-    
     </body>
     </html>

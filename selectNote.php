@@ -22,7 +22,7 @@ if (isset($_POST["note_id"])) {
                  <p style="text-align: center;">'.$row["noteTitle"].'</p>
 			  <!--Make note title unique in sql database-->
 			  <tr>
-                 <form id="currentNoteEdit">
+                   <form id="currentNoteEdit">
                    <td width="70%"><input type="text" value="'.$row["notes"].'" style="width: 90%;"></td>  
                    </form>
 			  </tr>
