@@ -53,7 +53,9 @@ if (isset($_POST['submitNoteName'])) {
     <link rel = "stylesheet" href = "NotebooksPage2Style.css"/>
 
     <!--Order of stylesheet referencing matters. For example, if we want to overwrite the bootstrap css with our own css file, we should link our own css file AFTER the boostrap stylesheet reference.-->
-</head>
+
+    
+  </head>
 <body>
 
     <nav class="navbar navbar-default">
@@ -88,7 +90,11 @@ echo $_SESSION['userID']; ?>');
       </div>
     </nav>
 
+    
+    
+
     <div id="noteContainer">
+    
     <div id="addNote">
       <div id="noteTitleAndContentContainer">
         
@@ -108,9 +114,10 @@ echo $_SESSION['userID']; ?>');
       </div>
     </div>
 
-    
-    
 
+    
+    
+    
     <div id="displayNotes">
 
     <div class="tab-content" class="tab-pane fade in active">
@@ -125,7 +132,18 @@ echo $_SESSION['userID']; ?>');
  if ($result = mysqli_query($conn, $retrieveNotes)) {
 	if (mysqli_num_rows($result) > 0) {
  ?>
-<table class="table table-striped table-hover col-sm-4">
+<table id="noteTable" class="table table-striped table-hover col-sm-4">
+  
+  <div class="dropdown text-center">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a id="tableSorter">Action</a></li>
+    
+  </ul>
+</div>
 <tr>
 <th style="background-color: pink; display: none;">Note ID</th>
 <th style="background-color: green;">Notes</th>
@@ -169,7 +187,7 @@ while($row = mysqli_fetch_array($result)){
     <form class="form-horizontal" action="" method="post">
     <div class="row">
         <div class="form-group text-left" >
-            <label class="control-label col-sm-4 text-left" for="email"><b>Search Employee Information:</b>:</label>
+            <label class="control-label col-sm-4 text-left" for="email"><b>Search a note content:</b>:</label>
             <div class="col-sm-5" >
               <input type="text" class="form-control" name="searchNoteInputText" placeholder="search here">
             </div>
@@ -206,6 +224,7 @@ while($row = mysqli_fetch_array($result)){
     ?>
 </div>
     </div>
+
 </div>
 <br>
 <br>
@@ -286,10 +305,11 @@ while($row = mysqli_fetch_array($result)){
 
 </div>
 
+
 <?php
 
 ?>
 
-    <script src = "NotebooksPage2Script.js"></script>
+<script src = "NotebooksPage2Script.js"></script>
     </body>
     </html>

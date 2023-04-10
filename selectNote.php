@@ -23,6 +23,7 @@ if (isset($_POST["note_id"])) {
 			  <!--Make note title unique in sql database-->
 			  <tr>
                    <form id="currentNoteEdit">
+                   <!--Use <textarea> tag for multiline support-->
                    <td width="70%"><textarea placeholder="" style="width: 90%;">'.$row["notes"].'</textarea></td>
                    </form>
 			  </tr>

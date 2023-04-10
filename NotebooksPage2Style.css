@@ -101,7 +101,7 @@ nav {
     margin-right: 40px;
     
     grid-column: 2 / span 3; /* Element starts at 2nd column and spans/occupies 3 columns to the right */
-    grid-row: 1 / span 2; /* element starts 1 row and spans/occupies 2 columns */
+    grid-row: 1 / span 2;  /* element starts 1 row and spans/occupies 2 columns */
     /*A very helpful reference for grid: https://www.w3schools.com/css/css_grid_item.asp*/
     border-color: blue;
     border-style: solid;

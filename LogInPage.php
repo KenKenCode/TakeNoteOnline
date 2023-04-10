@@ -75,7 +75,7 @@ if (isset($_POST["login"])) {
                 <label for="passwordID">Password: </label><br /> <!--label for will bind to input element's id-->
                 <input type="password" id="passwordID" name="passwordName" placeholder="Type your password" class = "logInTextbox"> <br />
                 
-                <input type="submit" name="login" class="logInButton">                      
+                <input type="submit" value="Log-In" name="login" class="logInButton">                      
             </form>
             
             <hr>
