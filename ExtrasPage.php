@@ -150,7 +150,7 @@ start.onclick = () => {
 
 //End of script for Optical Character Recognition
 
-
+//Browser version detector
 navigator.sayswho= (function(){
     var ua= navigator.userAgent;
     var tem; 
@@ -174,6 +174,7 @@ var browserVersion = navigator.sayswho;
 if(browserVersion == "Chrome 110" || browserVersion == "Chrome 110") {
   //alert('Confirmation');
 }
+
 </script>
           
           <!--Script for calculator calculations-->
@@ -327,26 +328,64 @@ echo $_SESSION['userID']; ?>');
   </div>
 </div>
 
+<div id="calculatorModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Calculator</h4>
+  </div>
+  <div class="modal-body">
+    <p>Some text in the modal.</p>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-primary pull-left">Add to new note</button>
+  <button type="button" class="btn btn-primary pull-left">Add to existing note</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+</div>
+    </div>
+
   <div id="dictionaryModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Dictionary</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+	  <div class="form-inline">
+	  <div class="form-group">
+        <!-- Elements to be centered go here -->
+        <audio id="sound"></audio> <!--do not delete <audio id="sound"></audio> in this line, it seems like this is where the input is received-->
+        <div class="row" style="margin-bottom: 5px; margin-left: auto; margin-right: auto;">
+            <div class="search-box">
+                <input
+                    type="text"
+                    placeholder="Type the word here.."
+                    id="inp-word"
+					class="form-control"
+					rows="3"
+                />
+                <button id="search-btn" class="btn">Search</button>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
       </div>
+	  </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary pull-left">Add to new note</button>
       <button type="button" class="btn btn-primary pull-left">Add to existing note</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
-    </div>
-
-  </div>
+	  </div>
+    </div><!-- content -->
+  </div><!-- dialog -->
 </div>
 
 
@@ -359,6 +398,44 @@ const showMenu = () => {
 navLinks.classList.toggle("show"); //will show the nav links that has been hidden because of .nav_links {display: none;}
 }
   </script>
+
+  <script>
+//Script for dictionary
+const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+const result = document.getElementById("result");
+const sound = document.getElementById("sound");
+const btn = document.getElementById("search-btn");
+
+btn.addEventListener("click", () => {
+    let inpWord = document.getElementById("inp-word").value;
+    fetch(`${url}${inpWord}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            result.innerHTML = `
+            <div class="word">
+                    <h3>${inpWord}</h3>
+					
+                </div>
+                <div class="details">
+                    <p>${data[0].meanings[0].partOfSpeech}</p>
+                    <p>/${data[0].phonetic}/</p>
+                </div>
+                <p class="word-meaning">
+				Meaning: <br>
+                   ${data[0].meanings[0].definitions[0].definition}
+                </p>
+                <p class="word-example">
+				Example: <br>
+                    ${data[0].meanings[0].definitions[0].example || ""}
+                </p>`;
+            sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
+        })
+        .catch(() => {
+            result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
+        });
+});
+    </script>
 
     </body>
     </html>

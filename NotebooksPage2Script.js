@@ -80,7 +80,7 @@ $(document).ready(
 
     $("#searchForNotes").hide();
 
-    $("#tableSorter").click(function() {
+    $("#tableSorterAlphabetically").click(function() {
       var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("noteTable");
   

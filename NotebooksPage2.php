@@ -136,17 +136,20 @@ echo $_SESSION['userID']; ?>');
   
   <div class="dropdown text-center">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Dropdown
+    Sort
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a id="tableSorter">Action</a></li>
+    <li><a id="tableSorterAlphabetically">Alphabetically (By title)</a></li>
     
+    <li><a id="tableSorterByID"> By ID </a></li>
+
   </ul>
 </div>
 <tr>
 <th style="background-color: pink; display: none;">Note ID</th>
 <th style="background-color: green;">Notes</th>
+
 <th style="background-color: blue;">Action</th>
 </tr>
 
@@ -225,7 +228,7 @@ while($row = mysqli_fetch_array($result)){
 </div>
     </div>
 
-</div>
+</div> <!--End of #displayNotes-->
 <br>
 <br>
 <br>

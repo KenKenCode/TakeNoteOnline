@@ -1,0 +1,132 @@
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Font Awesome -->
+        <!--<link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />-->
+        <!-- Google Fonts -->
+        <!--<link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+        />-->
+        
+    <title>Dictionary</title>
+		
+	<style>
+	
+	</style>
+	
+	<!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+	<div style="text-align: center;">
+	<button id="dictionaryButton" data-toggle="modal" data-target="#dictionaryModal">
+	Dictionary
+	</button>
+	</div>
+	
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="dictionaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal Title</h4>
+      </div>
+      <div class="modal-body">
+	  <div class="form-inline">
+	  <div class="form-group">
+        <!-- Elements to be centered go here -->
+        <audio id="sound"></audio> <!--do not delete <audio id="sound"></audio> in this line, it seems like this is where the input is received-->
+        <div class="row" style="margin-bottom: 5px; margin-left: auto; margin-right: auto;">
+            <div class="search-box">
+			
+                <input
+                    type="text"
+                    placeholder="Type the word here.."
+                    id="inp-word"
+					class="form-control"
+					rows="3"
+					
+                />
+				
+				
+                <button id="search-btn" class="btn">Search</button>
+				
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+      </div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+	  </div>
+    </div><!-- content -->
+  </div><!-- dialog -->
+</div><!-- modal -->
+
+        
+		
+        <!-- Script -->
+        <script>
+const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+const result = document.getElementById("result");
+const sound = document.getElementById("sound");
+const btn = document.getElementById("search-btn");
+
+btn.addEventListener("click", () => {
+    let inpWord = document.getElementById("inp-word").value;
+    fetch(`${url}${inpWord}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            result.innerHTML = `
+            <div class="word">
+                    <h3>${inpWord}</h3>
+					
+                </div>
+                <div class="details">
+                    <p>${data[0].meanings[0].partOfSpeech}</p>
+                    <p>/${data[0].phonetic}/</p>
+                </div>
+                <p class="word-meaning">
+				Meaning: <br>
+                   ${data[0].meanings[0].definitions[0].definition}
+                </p>
+                <p class="word-example">
+				Example: <br>
+                    ${data[0].meanings[0].definitions[0].example || ""}
+                </p>`;
+            sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
+        })
+        .catch(() => {
+            result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
+        });
+});
+
+		</script>
+    </body>
+</html>
+
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-body">
+  <div class="form-group">
+    <div class="col-xs-12 col-sm-8">
+      <input type="text" class="form-control" placeholder="Enter text">
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <button type="button" class="btn btn-primary btn-block">Submit</button>
+    </div>
+  </div>
+</div>
+</div>

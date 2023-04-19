@@ -133,6 +133,12 @@ nav {
     width: 90%;
     height: 350px;
     resize: none;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.dropdown-menu #tableSorterAlphabetically, #tableSorterByID {
+    cursor: pointer;
 }
 
 
