@@ -140,6 +140,7 @@ echo $_SESSION['userID']; ?>');
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a id="sort">Sort</a></li>
     <li><a id="tableSorterAlphabetically">Alphabetically (By title)</a></li>
     
     <li><a id="tableSorterByID"> By ID </a></li>
