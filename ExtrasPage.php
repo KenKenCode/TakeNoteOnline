@@ -178,19 +178,26 @@ if(browserVersion == "Chrome 110" || browserVersion == "Chrome 110") {
 </script>
           
           <!--Script for calculator calculations-->
-          <script src=
-"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
-		integrity=
-"sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"></script>
-	<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
-		integrity=
-"sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"></script>
-    <!--End of script for Optical Character Recognition-->
+          <script>
+            // This function clear all the values
+function clearScreen() {
+document.getElementById("result").value = "";
+}
+
+// This function display values
+function display(value) {
+document.getElementById("result").value += value;
+}
+
+// This function evaluates the expression and returns result
+function calculate() {
+var p = document.getElementById("result").value;
+var q = eval(p);
+document.getElementById("result").value = q;
+}
+          </script>
+          
+          <!--End of script for calculator calculations-->
 </head>
 <body>
 
@@ -337,8 +344,48 @@ echo $_SESSION['userID']; ?>');
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h4 class="modal-title">Calculator</h4>
   </div>
-  <div class="modal-body">
-    <p>Some text in the modal.</p>
+  <div class="modal-body" style="text-align: center;">
+
+<div class="calculatorContainer">
+<table class="calculator" >
+<tr>
+<td colspan="3"> <input class="display" type="text" id="result" disabled /> </td>
+
+<!-- clearScreen() function clears all the values -->
+<td> <input type="button" value="C" onclick="clearScreen()" id="btn" class="btn btn-danger"/> </td>
+</tr>
+<tr>
+<!-- display() function displays the value of clicked button -->
+<td> <input type="button" value="1" onclick="display('1')" class="btn btn-default"/> </td>
+<td> <input type="button" value="2" onclick="display('2')" class="btn btn-default"/> </td>
+<td> <input type="button" value="3" onclick="display('3')" class="btn btn-default"/> </td>
+<td> <input type="button" value="/" onclick="display('/')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="4" onclick="display('4')" class="btn btn-default"/> </td>
+<td> <input type="button" value="5" onclick="display('5')" class="btn btn-default"/> </td>
+<td> <input type="button" value="6" onclick="display('6')" class="btn btn-default"/> </td>
+<td> <input type="button" value="-" onclick="display('-')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="7" onclick="display('7')" class="btn btn-default"/> </td>
+<td> <input type="button" value="8" onclick="display('8')" class="btn btn-default"/> </td>
+<td> <input type="button" value="9" onclick="display('9')" class="btn btn-default"/> </td>
+<td> <input type="button" value="+" onclick="display('+')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="." onclick="display('.')" class="btn btn-default"/> </td>
+<td> <input type="button" value="0" onclick="display('0')" class="btn btn-default"/> </td>
+<!-- calculate() function evaluates the mathematical expression -->
+<td> <input type="button" value="=" onclick="calculate()" id="btn" class="btn btn-default"/> </td>
+<td> <input type="button" value="*" onclick="display('*')" class="btn btn-default"/> </td>
+</tr>
+</table>
+</div>
+
+
+
+
   </div>
   <div class="modal-footer">
   <button type="button" class="btn btn-primary pull-left">Add to new note</button>
@@ -373,7 +420,7 @@ echo $_SESSION['userID']; ?>');
                 />
                 <button id="search-btn" class="btn">Search</button>
             </div>
-            <div class="result" id="result"></div>
+            <div class="result" id="resultDictionary"></div>
         </div>
       </div>
 	  </div>
@@ -402,7 +449,7 @@ navLinks.classList.toggle("show"); //will show the nav links that has been hidde
   <script>
 //Script for dictionary
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-const result = document.getElementById("result");
+const result = document.getElementById("resultDictionary");
 const sound = document.getElementById("sound");
 const btn = document.getElementById("search-btn");
 

@@ -176,32 +176,24 @@ nav {
 /* END OF CSS FOR SPEECH TO TEXT */
 
 /* START OF CSS FOR CALCULATOR */
-#calcu {
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
+input {
+    margin: 10px;
 }
 
-.calculatorButton {
-    width: 100%;
-    padding: 20px 20px;
-    background-color: rgb(177, 93, 187);
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
+.display{
+    size: 50;
 }
 
-#result {
-    width: 100%;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    border: 2px solid black;
+.calculatorContainer {
+    display: inline-block;
+    border-color: orange;
+    border-style: solid;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+    
 }
-
 
 @media (max-width: 600px) {
     /* If screen size is less than 600 pixels, then this CSS will apply */

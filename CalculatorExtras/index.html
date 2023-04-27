@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title>Simple Calculator using HTML, CSS and JavaScript</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    input {
+        margin: 10px;
+    }
+
+    .display{
+        size: 50;
+    }
+
+    .calculatorContainer {
+        display: inline-block;
+        border-color: orange;
+        border-style: solid;
+        border-radius: 20px;
+        margin-top: 20px;
+        padding-bottom: 50px;
+        padding-top: 20px;
+        
+    }
+</style>
+</head>
+
+<body style="text-align: center;">
+
+<div class="calculatorContainer">
+<table class="calculator" >
+<tr>
+<td colspan="3"> <input class="display" type="text" id="result" disabled /> </td>
+
+<!-- clearScreen() function clears all the values -->
+<td> <input type="button" value="C" onclick="clearScreen()" id="btn" class="btn btn-danger"/> </td>
+</tr>
+<tr>
+<!-- display() function displays the value of clicked button -->
+<td> <input type="button" value="1" onclick="display('1')" class="btn btn-default"/> </td>
+<td> <input type="button" value="2" onclick="display('2')" class="btn btn-default"/> </td>
+<td> <input type="button" value="3" onclick="display('3')" class="btn btn-default"/> </td>
+<td> <input type="button" value="/" onclick="display('/')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="4" onclick="display('4')" class="btn btn-default"/> </td>
+<td> <input type="button" value="5" onclick="display('5')" class="btn btn-default"/> </td>
+<td> <input type="button" value="6" onclick="display('6')" class="btn btn-default"/> </td>
+<td> <input type="button" value="-" onclick="display('-')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="7" onclick="display('7')" class="btn btn-default"/> </td>
+<td> <input type="button" value="8" onclick="display('8')" class="btn btn-default"/> </td>
+<td> <input type="button" value="9" onclick="display('9')" class="btn btn-default"/> </td>
+<td> <input type="button" value="+" onclick="display('+')" class="btn btn-default"/> </td>
+</tr>
+<tr>
+<td> <input type="button" value="." onclick="display('.')" class="btn btn-default"/> </td>
+<td> <input type="button" value="0" onclick="display('0')" class="btn btn-default"/> </td>
+<!-- calculate() function evaluates the mathematical expression -->
+<td> <input type="button" value="=" onclick="calculate()" id="btn" class="btn btn-default"/> </td>
+<td> <input type="button" value="*" onclick="display('*')" class="btn btn-default"/> </td>
+</tr>
+</table>
+</div>
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+
+</html>

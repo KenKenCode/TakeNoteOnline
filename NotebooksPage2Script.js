@@ -5,7 +5,7 @@ const showMenu = () => {
 }
 
 function sortTable() {
-  document.getElementById("dropdownMenu1").innerHTML = "Sort 🔽";
+  
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("myTable");
   switching = true;
@@ -43,7 +43,9 @@ function sortTable() {
 }
 
 $(document).ready(
+  
   function showNote(){
+    document.getElementById("dropdownMenu1").innerHTML = "Sort 🔽";
     $('.noteIDClass').click(function(){
         id_note = $(this).attr('id') //href is also compatible replacement for id.
   

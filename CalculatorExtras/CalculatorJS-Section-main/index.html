@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
+    <script src="script.js" defer></script>
+    
+    
+  </head>
+  <body>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#calculatorModal" style="margin: 30px;">
+    Calculator
+    </button>
+    
+    <div id="calculatorModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+  
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Calculator</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row calculator-grid">
+        <div class="col-md-6" style="margin: 50px;">
+          
+          <div class="output" style="border-style: solid; border-color: black;">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-current-operand class="current-operand"></div>
+            </div>
+            <button data-all-clear class="span-two">AC</button>
+            <button data-delete>DEL</button>
+            <button data-operation>÷</button>
+            <button data-number>1</button>
+            <button data-number>2</button>
+            <button data-number>3</button>
+            <button data-operation>*</button>
+            <button data-number>4</button>
+            <button data-number>5</button>
+            <button data-number>6</button>
+            <button data-operation>+</button>
+            <button data-number>7</button>
+            <button data-number>8</button>
+            <button data-number>9</button>
+            <button data-operation>-</button>
+            <button data-number>.</button>
+            <button data-number>0</button>
+            <button data-equals class="span-two">=</button>
+  
+        </div>
+      
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary pull-left">Add to new note</button>
+    <button type="button" class="btn btn-primary pull-left">Add to existing note</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+  
+  </div>
+      </div>
+    
+
+  </body>
+</html>
