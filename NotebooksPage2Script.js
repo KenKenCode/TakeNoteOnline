@@ -45,7 +45,9 @@ function sortTable() {
 $(document).ready(
   
   function showNote(){
-    document.getElementById("dropdownMenu1").innerHTML = "Sort 🔽";
+    document.getElementById("dropdownMenu1").innerHTML = "Sort 🔽"; //Set the default look of Sort functionality
+
+    
     $('.noteIDClass').click(function(){
         id_note = $(this).attr('id') //href is also compatible replacement for id.
   
@@ -163,16 +165,38 @@ $(document).ready(
   }
     });
 
+
     $("#sort").click(function() {
       document.getElementById("dropdownMenu1").innerHTML = "Sort 🔽";
     });
     
+
+    $("#text-left-align").click(function() {
+      event.preventDefault(); // prevent page reload
+      document.getElementById("noteContent").style.textAlign = "left";
+    });
+
+    $("#text-center-align").click(function() {
+      event.preventDefault(); // prevent page reload
+      document.getElementById("noteContent").style.textAlign = "center";
+    });
+
+    $("#text-right-align").click(function() {
+      event.preventDefault(); // prevent page reload
+      document.getElementById("noteContent").style.textAlign = "right";
+    });
+
+    $('#darkMode').click(function(){
+      document.getElementById('noteContentID').style.backgroundColor = 'black';
+     });
+    
+     $('#lightMode').click(function(){
+      document.getElementById('noteContentID').style.backgroundColor = 'white';
+     });
+
 }
 
 
 
 );
-
-
-
 

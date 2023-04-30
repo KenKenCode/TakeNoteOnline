@@ -104,7 +104,9 @@ echo $_SESSION['userID']; ?>');
           <textarea id="noteContent" name="contentName" placeholder="Enter your note here" form="noteForm"></textarea>
           
           <div id="advancedEditorAndSubmit">
-          <button id="advancedNoteEditor" style="margin-left: 15px;"> Advanced Editor </button>
+          <button id="text-left-align" style="margin-left: 15px;">Left-Align</button>
+          <button id="text-center-align" style="margin-left: 15px;">Center-Align</button>
+          <button id="text-right-align" style="margin-left: 15px;">Right-Align</button>
           <input type="submit" id="submitNote" name="submitNoteName"  value="+" style="margin-left: 60px; font-size: 30px;">
           </div>
           
@@ -115,8 +117,6 @@ echo $_SESSION['userID']; ?>');
     </div>
 
 
-    
-    
     
     <div id="displayNotes">
 
