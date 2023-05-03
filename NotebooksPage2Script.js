@@ -186,13 +186,7 @@ $(document).ready(
       document.getElementById("noteContent").style.textAlign = "right";
     });
 
-    $('#darkMode').click(function(){
-      document.getElementById('noteContentID').style.backgroundColor = 'black';
-     });
     
-     $('#lightMode').click(function(){
-      document.getElementById('noteContentID').style.backgroundColor = 'white';
-     });
 
 }
 

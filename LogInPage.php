@@ -23,7 +23,23 @@ if (isset($_POST["login"])) {
         
         $result = mysqli_query($connect, $queryString);
         
-        if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+               
+            if (password_verify($password, $row["studentPassword"])) {
+                //return true;  
+                $row2 = mysqli_fetch_assoc($studentID);
+                $_SESSION["username"] = $username;
+                $_SESSION["userID"] = $row2['studentID'];
+                header("location:NotebooksPage2.php");
+            } else {
+                //return false;  
+                echo '<script>alert("Wrong User Details")</script>';
+            }
+        }
+
+         /*
+         This is just back-up only, you should mainly use the while loop above because it has password_verify needed for de-hashing, that while loop is also just a copy of the while statement inside this if condition
+ if (mysqli_num_rows($result) > 0) {
             $row2 = mysqli_fetch_assoc($studentID);
                     $_SESSION["username"] = $row2['studentUsername'];
                     $_SESSION["userID"] = $row2['studentID'];
@@ -43,9 +59,12 @@ if (isset($_POST["login"])) {
                 }
             }
             */
+            /*
         } else {
-            echo '<script>alert("Wrong User Details 2")</script>';
+            echo '<script>alert("Invalid User Details")</script>';
         }
+		*/
+
     }
     
 }
@@ -57,7 +76,7 @@ if (isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Log-In to TakeNote</title>
 <link href = "LogInPageStyle.css" rel = "stylesheet"/>
 </head>
 <body>

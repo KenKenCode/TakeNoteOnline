@@ -44,14 +44,14 @@ if(isset($_POST['register'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> <!--JQuery-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="RegistrationPageStyle.css">
-    <title>Register</title>
+    <title>Register to TakeNote</title>
 
     
 </head>
 <body>
 <main>
     <div class="registerBox">
-            <h1>Registration</h1>
+            <h1>Register to TakeNote</h1>
             <hr>
             <br />
             <form action="" method="POST">
