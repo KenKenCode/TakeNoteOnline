@@ -23,6 +23,7 @@ if (isset($_POST['submitNoteName'])) {
       echo '<script type="text/javascript"> alert("something went wrong"); </script>';
     } else {
       echo '<script type="text/javascript"> alert("note insertion successful"); </script>';
+      header("Refresh:0");
     }
 
 }
@@ -42,6 +43,9 @@ if (isset($_POST['submitNoteName'])) {
     <title>Notebooks</title>
     
 
+    <!--TinyMCE Text Editor-->
+    <script src="./TinyMCE/tinymce/js/tinymce/tinymce.min.js"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> <!--JQuery-->
@@ -55,6 +59,7 @@ if (isset($_POST['submitNoteName'])) {
     <!--Order of stylesheet referencing matters. For example, if we want to overwrite the bootstrap css with our own css file, we should link our own css file AFTER the boostrap stylesheet reference.-->
 
     
+
   </head>
 <body>
 
@@ -99,18 +104,22 @@ echo $_SESSION['userID']; ?>');
       <div id="noteTitleAndContentContainer">
         
         <div id="titleAndContent">
+          
         <form action="" method="POST" id="noteForm">
           <input type="text" id="noteTitle" name="titleName" placeholder="Note Title">
           <textarea id="noteContent" name="contentName" placeholder="Enter your note here" form="noteForm"></textarea>
           
           <div id="advancedEditorAndSubmit">
+          <!--
           <button id="text-left-align" style="margin-left: 15px;">Left-Align</button>
           <button id="text-center-align" style="margin-left: 15px;">Center-Align</button>
           <button id="text-right-align" style="margin-left: 15px;">Right-Align</button>
+           -->
           <input type="submit" id="submitNote" name="submitNoteName"  value="+" style="margin-left: 60px; font-size: 30px;">
           </div>
           
         </form>
+        
         </div>
         
       </div>

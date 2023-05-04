@@ -13,6 +13,7 @@ if (isset($_POST["note_id"])) {
 
 
     $output .= '  
+    <!DOCTYPE html>
     <html>
     <head>
     
@@ -48,7 +49,8 @@ if (isset($_POST["note_id"])) {
 			  <tr>
                    <form id="currentNoteEdit">
                    <!--Use <textarea> tag for multiline support-->
-                   <td width="70%"><textarea id="noteContentID" placeholder="" style="width: 90%;">'.$row["notes"].'</textarea><br></br></td>
+                   <td width="70%" id="noteContentRow"><p id="noteContentID" placeholder="" style="width: 90%; display: inline-block;">'.$row["notes"].'</p><br></br></td>
+                   <td width="70%"></td>
                    </form>
 			  </tr>
               ';  
@@ -61,11 +63,13 @@ if (isset($_POST["note_id"])) {
      function mode(){
      $('#darkMode').click(function(){
           document.getElementById('noteContentID').style.backgroundColor = 'black';
+          document.getElementById('noteContentRow').style.backgroundColor = 'black';
           document.getElementById('noteContentID').style.color = 'white';
          });
      
          $('#lightMode').click(function(){
           document.getElementById('noteContentID').style.backgroundColor = 'white';
+          document.getElementById('noteContentRow').style.backgroundColor = 'white';
           document.getElementById('noteContentID').style.color = 'black';
          });
        }

@@ -4,6 +4,12 @@ const showMenu = () => {
     navLinks.classList.toggle("show"); //will show the nav links that has been hidden because of .nav_links {display: none;}
 }
 
+//TinyMCE:
+tinymce.init({
+  selector: '#noteContent',
+  width: '100%'
+});
+
 function sortTable() {
   
   var table, rows, switching, i, x, y, shouldSwitch;
@@ -49,6 +55,7 @@ $(document).ready(
 
     
     $('.noteIDClass').click(function(){
+        event.preventDefault(); // prevent page reload
         id_note = $(this).attr('id') //href is also compatible replacement for id.
   
         $.ajax({url: "selectNote.php",

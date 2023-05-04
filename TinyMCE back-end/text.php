@@ -2,7 +2,7 @@
 include_once 'submit.php';
 include_once 'dbConfig.php';
 
-$noteSelect = mysqli_query($db, "SELECT * FROM editor");
+$noteSelect = mysqli_query($db, "SELECT * FROM editor WHERE id = 1;");
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,13 +48,15 @@ $noteSelect = mysqli_query($db, "SELECT * FROM editor");
 <?php
 //Remember to use while loop when querying multiple rows/columns
 while($row = mysqli_fetch_assoc($noteSelect)) {
-    echo "<p>" . $row['content'] . "</p>";
+    echo "<textarea>" . $row['content'] . "</textarea>";
+	echo "<p>" . $row['content'] . "</p>";
 }
 ?>
 </div>
 <script>
 tinymce.init({
-    selector: '#editor'
+    selector: '#editor',
+	width: 500
 });
 </script>
 
