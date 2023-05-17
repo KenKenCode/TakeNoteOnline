@@ -6,6 +6,8 @@ session_start();
 $conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
 $retrieveNotes = "SELECT * FROM studentNotes WHERE studentUsername = '" . $_SESSION['username'] . "'";
+//$deleteSelectedNote = "SELECT noteid FROM studentNotes";
+
 
 if (isset($_POST['submitNoteName'])) {
   if(empty(trim($_POST['titleName'])) && empty(trim($_POST['contentName']))) {
@@ -23,7 +25,8 @@ if (isset($_POST['submitNoteName'])) {
       echo '<script type="text/javascript"> alert("something went wrong"); </script>';
     } else {
       echo '<script type="text/javascript"> alert("note insertion successful"); </script>';
-      header("Refresh:0");
+      header("Refresh:0"); //Refresh the page because somehow the error 'tinymce.min.js:4  Failed to initialize the editor as the document is not in standards mode. TinyMCE requires standards mode.' occurs
+      //My html documents have <!DOCTYPE html> declaration meaning that it is in standards mode but the error still occurs, using header("Refresh:0"); fixes the issue
     }
 
 }
@@ -200,12 +203,12 @@ while($row = mysqli_fetch_array($result)){
     <form class="form-horizontal" action="" method="post">
     <div class="row">
         <div class="form-group text-left" >
-            <label class="control-label col-sm-4 text-left" for="email"><b>Search a note content:</b>:</label>
+            <label class="control-label col-sm-4 text-left" for="email"><b>Search a note content:</b></label>
             <div class="col-sm-5" >
               <input type="text" class="form-control" name="searchNoteInputText" placeholder="search here">
             </div>
             <div class="col-sm-2">
-              <button type="submit" name="searchNoteInputButton" class="btn btn-primary btn-sm">Submit</button>
+              <button type="submit" id="searchNoteID" name="searchNoteInputButton" class="btn btn-primary btn-sm">Submit</button>
             </div>
         </div>
         
@@ -221,11 +224,12 @@ while($row = mysqli_fetch_array($result)){
       $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       echo "<table>";
-      echo "<tr><th>Notes</th></tr>";
+      echo "<tr><th style='display: none;'>Note ID</th><th>Notes</th> <th>Action</th></tr>";
       while ($row = mysqli_fetch_assoc($result)) {
           echo "<tr>";
+          echo "<td style='display: none;'>" . $row['noteid'] . "</td>";
           echo "<td>" . $row['notes'] . "</td>";
-          
+          echo '<td><button id= "'. $row["noteid"] .'" class="btn btn-primary btn-sm noteIDClass"> View </button></td>';
           echo "</tr>";
       }
       echo "</table>";
@@ -266,7 +270,7 @@ while($row = mysqli_fetch_array($result)){
 
 -->
 
-
+<!--Start of modal for note selection-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -279,17 +283,78 @@ while($row = mysqli_fetch_array($result)){
 </h5>
         
       </div>
-      <div class="modal-body">
+      <div class="modal-body modalBodyOfSelectedNote">
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary pull-left">Delete</button>
-        <button type="button" class="btn btn-secondary pull-left">Edit</button>
+      
+      <!--
+        <button type="button" id="deleteNoteSelected" class="btn btn-secondary pull-left">Delete</button>
+        
+        <button type="button" id="editNoteSelected" class="btn btn-secondary pull-left">Edit</button>
+      -->
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+<!--End of modal for note selection-->
+
+<!--Start of modal for delete selected notes-->
+<div class="modal fade" id="deleteSelectedNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLabelTitle">
+          <!--If we want to change the modal title dynamically, maybe we shall just initialize a hidden table where we can fetch the current id of the selected note-->
+</h5>
+        
+      </div>
+      <div class="modal-body modalBodyOfDeletingNote">
+        <!--AJAX of this is in selectNote.php, not in NotebooksPage2Script.js-->
+        Delete '<b id="titleDeletingNoteID"> </b>'? <br>Note ID: <b id="titleID"> </b>
+        <!--Hide the ID on deleting modal for formality purposes. We need to retrieve unique ID to specificity purposes.-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="yesDeleteNote" class="btn btn-secondary pull-left">Yes</button>
+        <button type="button" id="noDeleteNote" class="btn btn-secondary pull-left">No</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of modal for delete selected notes-->
+
+
+<!--Start of modal for editing selected note-->
+<div class="modal fade" id="editSelectedNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLabelTitle">
+          <!--If we want to change the modal title dynamically, maybe we shall just initialize a hidden table where we can fetch the current id of the selected note-->
+</h5>
+        
+      </div>
+      <div class="modal-body modalBodyOfEditingNote">
+        Edit
+        <textarea id="editNoteArea"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelEditNote" class="btn btn-secondary pull-left">Cancel</button>
+        <button type="button" id="saveEditNote" class="btn btn-secondary pull-right">Save changes</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of modal for editing selected note-->
 
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -307,9 +372,9 @@ while($row = mysqli_fetch_array($result)){
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary pull-left">Delete</button>
-        <button type="button" class="btn btn-secondary pull-left">Edit</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary pull-left">Search</button>
+        <button type="button" class="btn btn-secondary pull-left">Search</button>
+        <button type="button" class="btn btn-primary">Search</button>
       </div>
     </div>
   </div>

@@ -6,8 +6,9 @@ const showMenu = () => {
 
 //TinyMCE:
 tinymce.init({
-  selector: '#noteContent',
-  width: '100%'
+  selector: '#noteContent, #editNoteArea',
+  width: '100%', 
+  
 });
 
 function sortTable() {
@@ -55,9 +56,11 @@ $(document).ready(
 
     
     $('.noteIDClass').click(function(){
+        //Basically, .attr() gets the attribute value from $(this).attr('id'). so this could be $('.className').attr('id'), the id of the .className is selected.
         event.preventDefault(); // prevent page reload
         id_note = $(this).attr('id') //href is also compatible replacement for id.
-  
+       
+        //Bootstrap from NotebooksPage2.php would also be automatically applied to selectNote.php since we open it using from notebookspage2 using this ajax code
         $.ajax({url: "selectNote.php",
         method:'post',
         data:{
@@ -65,7 +68,8 @@ $(document).ready(
         },
         success: function(result){
 
-    $(".modal-body").html(result);
+    $(".modalBodyOfSelectedNote").html(result); //class of the body of the modal in note selection
+    $('#myModal').modal("show");
 
   },    error: function(jqXHR, textStatus, errorThrown) {
         // Code to handle errors
@@ -74,9 +78,30 @@ $(document).ready(
 	
   });
 
-        $('#myModal').modal("show");
+        
     });
 
+
+    $('.deleteNoteSelectedClass').click(function(){
+      id_note = $(this).attr('id') //href is also compatible replacement for id.
+  
+        $.ajax({url: "deleteNote.php",
+        method:'post',
+        data:{
+          note_id:id_note //will be used for selectNote.php POST method
+        },
+        success: function(result){
+
+    $(".modalBodyOfDeletingNote").html(result); //class of the body of the modal in note selection
+    $('#deleteSelectedNoteModal').modal("show");
+
+  },    error: function(jqXHR, textStatus, errorThrown) {
+        // Code to handle errors
+        console.log("AJAX Error: " + textStatus + " - " + errorThrown);
+    }
+	
+  });
+    });
 
     $("#searchForNotesID").click(function(){
       $("#tableForNotes").hide();
@@ -193,11 +218,24 @@ $(document).ready(
       document.getElementById("noteContent").style.textAlign = "right";
     });
 
+    $("#searchNoteID").click(function() {
+      //This is just placeholder for #searchNoteID action when the button is clicked
+    });
+
+    $("#yesDeleteNote").click(function() {
+        alert('Note DELETED!');
+    });
+
+    $("#noDeleteNote").click(function() {
+
+    });
+
+    $("#saveEditNote").click(function() {
+
+    });
     
-
-}
-
-
-
-);
+    
+    
+//End of line for function showNote()
+});
 
