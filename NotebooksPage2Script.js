@@ -58,8 +58,12 @@ $(document).ready(
     $('.noteIDClass').click(function(){
         //Basically, .attr() gets the attribute value from $(this).attr('id'). so this could be $('.className').attr('id'), the id of the .className is selected.
         event.preventDefault(); // prevent page reload
-        id_note = $(this).attr('id') //href is also compatible replacement for id.
-       
+        id_note = $(this).attr('id'); //href is also compatible replacement for id.
+        id_noteTwo = $(this).attr('id');
+        console.log(id_note);
+        console.log("id_noteTwo value: " + id_noteTwo);
+
+        
         //Bootstrap from NotebooksPage2.php would also be automatically applied to selectNote.php since we open it using from notebookspage2 using this ajax code
         $.ajax({url: "selectNote.php",
         method:'post',
@@ -67,7 +71,7 @@ $(document).ready(
           note_id:id_note //will be used for selectNote.php POST method
         },
         success: function(result){
-
+          //setContent of TinyMCE in editNoteArea
     $(".modalBodyOfSelectedNote").html(result); //class of the body of the modal in note selection
     $('#myModal').modal("show");
 
@@ -77,8 +81,10 @@ $(document).ready(
     }
 	
   });
+  
 
-        
+  
+      
     });
 
 
@@ -231,8 +237,11 @@ $(document).ready(
     });
 
     $("#saveEditNote").click(function() {
-
+      
     });
+
+    
+    
     
     
     

@@ -8,7 +8,7 @@ $conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 $retrieveNotes = "SELECT * FROM studentNotes WHERE studentUsername = '" . $_SESSION['username'] . "'";
 //$deleteSelectedNote = "SELECT noteid FROM studentNotes";
 
-
+/*
 if (isset($_POST['submitNoteName'])) {
   if(empty(trim($_POST['titleName'])) && empty(trim($_POST['contentName']))) {
     echo '<script type="text/javascript"> alert("Input fields must have values"); </script>';
@@ -32,8 +32,14 @@ if (isset($_POST['submitNoteName'])) {
 }
 
 }
+*/ 
 
 
+/*
+
+
+}
+*/
 
 ?>
 
@@ -271,6 +277,7 @@ while($row = mysqli_fetch_array($result)){
 -->
 
 <!--Start of modal for note selection-->
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -284,6 +291,7 @@ while($row = mysqli_fetch_array($result)){
         
       </div>
       <div class="modal-body modalBodyOfSelectedNote">
+      
         ...
       </div>
       <div class="modal-footer">
@@ -293,11 +301,12 @@ while($row = mysqli_fetch_array($result)){
         
         <button type="button" id="editNoteSelected" class="btn btn-secondary pull-left">Edit</button>
       -->
-        <button type="button" class="btn btn-primary">Save changes</button>
+        
       </div>
     </div>
   </div>
 </div>
+
 <!--End of modal for note selection-->
 
 <!--Start of modal for delete selected notes-->
@@ -330,6 +339,7 @@ while($row = mysqli_fetch_array($result)){
 
 
 <!--Start of modal for editing selected note-->
+
 <div class="modal fade" id="editSelectedNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -344,7 +354,7 @@ while($row = mysqli_fetch_array($result)){
       </div>
       <div class="modal-body modalBodyOfEditingNote">
         Edit
-        <textarea id="editNoteArea"></textarea>
+        <textarea id="editNoteArea"> </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" id="cancelEditNote" class="btn btn-secondary pull-left">Cancel</button>
@@ -383,11 +393,22 @@ while($row = mysqli_fetch_array($result)){
 
 </div>
 
+<?php 
 
-<?php
+//We cannot use this on the first php tag because the first php tag is the first one to load when the page reloads. So move this condition to somewhere where it can only show up when explicitly called/triggered.
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] === 'NotebooksPage2.php') {
+if(isset($_POST["note_idTwo"])) {
+  
+  
+  //$queryEditUpdate = "UPDATE studentNotes SET notes WHERE noteid = '".$_POST["note_idTwo"]."'";  
+  echo'<script>console.log("NOTEBOOKS!");</script>';
+  echo'<script>console.log("NOTEBOOKS AAGGGGAAAIIINNN!");</script>';
+} else {
+  echo'<script>console.log("NOTEBOOKS not working!");</script>';
+}
+}
 ?>
-
 <script src = "NotebooksPage2Script.js"></script>
     </body>
     </html>

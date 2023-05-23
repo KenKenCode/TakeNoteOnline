@@ -8,7 +8,7 @@ $selectNote = "SELECT notes FROM studentNotes WHERE noteid = 61";
 
 $result = mysqli_query($conn, $selectNote);
 $row = mysqli_fetch_assoc($result);
-$content = $row['notes'];
+
 
 ?>
 
@@ -37,8 +37,8 @@ $content = $row['notes'];
 		$(document).ready(function() {
 		$("#set-data-btn-id").on("click", function(e) {
 		
-		var content = '<?php echo $content; ?>'; //remember to only use single quote marks
-
+		var content = `<?php echo $content = $row["notes"]; ?>`; //remember to only use single quote marks around <?php ?> tag
+		console.log(content);
 		tinymce.get("texteditor").setContent(content);
 
 	});
