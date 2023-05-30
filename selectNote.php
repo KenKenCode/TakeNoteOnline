@@ -1,6 +1,7 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 error_reporting(E_ALL | E_STRICT);
+//include_once('NotebooksPage2.php');
 
 $conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 
@@ -59,6 +60,11 @@ if (isset($_POST["note_id"])) {
       display: inline-block;
   }
 
+
+  .tryLang {
+    display: none;
+  }
+  
   
   table, th, td, tr {
     /*We can also use ID and class to better specify which element to style, but since we only have one table
@@ -85,15 +91,33 @@ $(document).ready(
       });
 
 
-      $(".deleteButton").click(function(){
+      $(".deleteButtonClass").click(function(){
        //Basically, .attr() gets the attribute value from $(this).attr("id"). so this could be $(".className").attr("id"), the id of the .className is selected.
        event.preventDefault(); // prevent page reload
-       
+       deleteclass_note = $(this).attr('id');
+       console.log('ID of delete button is: ' + deleteclass_note);
+
        var title_note = $("#noteTitleSelected").text();
        var title_id_note = $("#noteIDSelected").text();
 
-       $("#titleDeletingNoteID").text(title_note);
-       $("#titleID").text(title_id_note);
+       $("#titleDeletingNote").html(title_note);
+       $("#titleID").html(title_id_note);
+
+       $.ajax({url: "NotebooksPage2.php",
+        method:'POST',
+        data:{
+          note_deleteclass:deleteclass_note //will be used for selectNote.php POST method
+        },
+        success: function(result){
+          //setContent of TinyMCE in editNoteArea
+          alert('working');
+
+  },    error: function(jqXHR, textStatus, errorThrown) {
+        // Code to handle errors
+        console.log("AJAX Error: " + textStatus + " - " + errorThrown);
+    }
+	
+  }); 
 
        $("#myModal").modal("hide");
  
@@ -101,18 +125,22 @@ $(document).ready(
      }); //End of line for $(".deleteButton").click(function()){};
 
      
-     $('.editButton').click(function(){
+     $('.editButtonClass').click(function(){
        //Basically, .attr() gets the attribute value from $(this).attr("id"). so this could be $(".className").attr("id"), the id of the .className is selected.
        event.preventDefault(); // prevent page reload
        id_noteTwo = $(this).attr('id');
+       id_noteTitle = $('.noteTitleClass').attr('id');
 
+       console.log('ID of delete note is: ' + id_noteTitle);
       $.ajax({url: "NotebooksPage2.php",
       method:'POST',
       data: {
         note_idTwo:id_noteTwo
       },
       success: function(result) {
-          console.log('IT WORKS! note ID: ' + id_note + '. This is from selectNote.php');
+          console.log('IT WORKS! note ID: ' + id_noteTwo + '. This is from selectNote.php');
+          $("#editNoteTitleID").html(id_noteTitle);
+          $("#editNoteID").html(id_noteTwo);
       }, 
       error: function(jqXHR, textStatus, errorThrown) {
         // Code to handle errors
@@ -175,8 +203,9 @@ $(document).ready(
 
         <td id="deleteAndEditContainerID">
         <div style="margin-top: 80%;">
-        <button type="button" class="btn deleteButton '.$row['noteTitle'].'" id="'.row['noteid'].'" data-dismiss="modal" data-toggle="modal" data-target="#deleteSelectedNoteModal">Delete</button>
-        <button type="button" class="btn editButton '.$row['noteTitle'].'" id="'.row['noteid'].'" data-dismiss="modal" data-toggle="modal" data-target="#editSelectedNoteModal">Edit</button>
+        <p class="noteTitleClass" id="<?php echo htmlspecialchars($row['noteTitle']); ?>"></p>
+        <button type="button" class="btn deleteButtonClass" id="<?php echo htmlspecialchars($row['noteid']); ?>" data-dismiss="modal" data-toggle="modal" data-target="#deleteSelectedNoteModal">Delete</button>
+        <button type="button" class="btn editButtonClass" id="<?php echo htmlspecialchars($row['noteid']); ?>" data-dismiss="modal" data-toggle="modal" data-target="#editSelectedNoteModal">Edit</button>
         </div>
         </td>
 
@@ -198,7 +227,7 @@ $(document).ready(
     </body>
     </html>
     <?php
-  }
+  } 
   
   ?>
 

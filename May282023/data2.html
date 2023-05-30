@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+
+<button id="changeButton">Change Data Attribute</button>
+<p id="element" data-custom-value="initial">Element with Data Attribute</p>
+
+<script>
+$(document).ready(function() {
+  $('#changeButton').click(function() {
+  //set the data*-
+    var newValue = 'updated value';
+    $('#element').data('custom-value', newValue);
+	
+  //get the data*-
+    var updatedValue = $('#element').data('custom-value');
+    alert('Data attribute value changed to: ' + updatedValue);
+  });
+});
+</script>
+</body>
+</html>

@@ -89,8 +89,9 @@ $(document).ready(
 
 
     $('.deleteNoteSelectedClass').click(function(){
-      id_note = $(this).attr('id') //href is also compatible replacement for id.
-  
+      id_noteThree = $(this).attr('id'); //href is also compatible replacement for id.
+      console.log('this is from delete. NOTE ID: ' + id_noteThree);
+      
         $.ajax({url: "deleteNote.php",
         method:'post',
         data:{
@@ -229,7 +230,24 @@ $(document).ready(
     });
 
     $("#yesDeleteNote").click(function() {
-        alert('Note DELETED!');
+        
+      /*
+        var elementTen = document.getElementById("titleDeletingNote");
+        var elementTenID = document.getElementById("titleID");
+
+        var elementTenValue = elementTen.textContent || elementTen.innerText;
+        var elementTenValueID = elementTenID.textContent || elementTenID.innerText;
+        alert('Note DELETED!\n' + elementTenValue + "\nID:" + elementTenValueID);
+*/
+        
+        
+        /*
+        RETRIEVES THE ORIGINAL ID, NOT THE MODIFIED ON. MUST HAVE SOMETHING TO DO WITH DOM.
+        titleidnote = $('.titleIDClass').attr('id');
+        alert("This is the ID OF THE DELETING NOTE: " + titleidnote);
+        */
+        
+
     });
 
     $("#noDeleteNote").click(function() {

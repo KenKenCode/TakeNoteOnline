@@ -8,8 +8,12 @@ $conn=mysqli_connect("localhost", "root", "", "tnstudentregistrationdb");
 $retrieveNotes = "SELECT * FROM studentNotes WHERE studentUsername = '" . $_SESSION['username'] . "'";
 //$deleteSelectedNote = "SELECT noteid FROM studentNotes";
 
-/*
+
+
+  
+//if we have multiple forms in a file, we use elseif. DON'T USE MULTIPLE IF because only elseif allows you to specify additional conditions to check if the previous conditions are not met.
 if (isset($_POST['submitNoteName'])) {
+  echo "<script type='text/javascript'>console.log('I submitted a note'); </script>";
   if(empty(trim($_POST['titleName'])) && empty(trim($_POST['contentName']))) {
     echo '<script type="text/javascript"> alert("Input fields must have values"); </script>';
 } else {
@@ -25,16 +29,47 @@ if (isset($_POST['submitNoteName'])) {
       echo '<script type="text/javascript"> alert("something went wrong"); </script>';
     } else {
       echo '<script type="text/javascript"> alert("note insertion successful"); </script>';
-      header("Refresh:0"); //Refresh the page because somehow the error 'tinymce.min.js:4  Failed to initialize the editor as the document is not in standards mode. TinyMCE requires standards mode.' occurs
+      //header("Refresh:0"); //Refresh the page because somehow the error 'tinymce.min.js:4  Failed to initialize the editor as the document is not in standards mode. TinyMCE requires standards mode.' occurs
       //My html documents have <!DOCTYPE html> declaration meaning that it is in standards mode but the error still occurs, using header("Refresh:0"); fixes the issue
     }
 
 }
 
+} 
+
+if(isset($_POST['note_deleteclass'])) {
+  echo "<script type='text/javascript'>alert('AJAX for deleteNoteID is working!');</script>";
 }
-*/ 
+/*
+elseif (isset($_POST['yesDeleteNoteName'])) {
+  //for some reason, php isset only works with <form><button type="submit"></button></form>. Although isset is not limited to HTML forms. It is a general-purpose PHP function used to check if a variable is set and not null.
+  
+    $studentIDNote = mysqli_real_escape_string($conn, $_SESSION['userID']);;
+    $studentUsernameNote = mysqli_real_escape_string($conn, $_SESSION['username']);;
+  
+  $noteID = mysqli_real_escape_string($conn, $_POST['']); //html name attribute of note to be deleted.
+  
+  //WE MIGHT REALLY HAVE TO USE AJAX BECAUSE MAYBE WE REALLY CANT RETRIEVE THE ID IF THE PHP QUERY IS BEFORE THE HTML ELEMENT
+  
+  $conn->query("DELETE FROM studentNotes WHERE noteid = '$noteID'");
 
-
+  if($conn->affected_rows != 1) {
+    echo '<script type="text/javascript"> alert("something went wrong"); </script>';
+    //header("Refresh:0");
+  } else {
+    echo '<script type="text/javascript"> alert("note DELETION successful"); </script>';
+    //header("Refresh:0");
+  } 
+  
+  //echo "<script type='text/javascript'>console.log('deleting works'); </script>";
+  //header("Refresh:0"); //Refresh the page because somehow the error 'tinymce.min.js:4  Failed to initialize the editor as the document is not in standards mode. TinyMCE requires standards mode.' occurs
+      //My html documents have <!DOCTYPE html> declaration meaning that it is in standards mode but the error still occurs, using header("Refresh:0"); fixes the issue
+  } elseif (isset($_POST['noDeleteNoteName'])) {
+    echo "<script type='text/javascript'>console.log('not deleting works'); </script>";
+    //header("Refresh:0"); //Refresh the page because somehow the error 'tinymce.min.js:4  Failed to initialize the editor as the document is not in standards mode. TinyMCE requires standards mode.' occurs
+        //My html documents have <!DOCTYPE html> declaration meaning that it is in standards mode but the error still occurs, using header("Refresh:0"); fixes the issue
+  }
+*/
 /*
 
 
@@ -77,9 +112,9 @@ if (isset($_POST['submitNoteName'])) {
 
       <script>
         //alertdialog
-alert('<?php echo $_SESSION['username'];
-echo '  user ID is:  ';
-echo $_SESSION['userID']; ?>');
+//alert('<?php echo $_SESSION['username'];
+//echo '  user ID is:  ';
+//echo $_SESSION['userID']; ?>');
 </script>
         <h1 class = "nav-brand navbar-header">TakeNote</h1>
         
@@ -127,6 +162,10 @@ echo $_SESSION['userID']; ?>');
           <input type="submit" id="submitNote" name="submitNoteName"  value="+" style="margin-left: 60px; font-size: 30px;">
           </div>
           
+        </form>
+
+        <form action = "" method = "POST" id = "firstForm">
+          <input type="submit" id="firstFormSubmit" name="firstFormSubmitName">
         </form>
         
         </div>
@@ -297,7 +336,7 @@ while($row = mysqli_fetch_array($result)){
       <div class="modal-footer">
       
       <!--
-        <button type="button" id="deleteNoteSelected" class="btn btn-secondary pull-left">Delete</button>
+        <button type="button" id="deleteNoteSelected" class="btn btn-secondary pull-left ">Delete</button>
         
         <button type="button" id="editNoteSelected" class="btn btn-secondary pull-left">Edit</button>
       -->
@@ -308,6 +347,8 @@ while($row = mysqli_fetch_array($result)){
 </div>
 
 <!--End of modal for note selection-->
+
+
 
 <!--Start of modal for delete selected notes-->
 <div class="modal fade" id="deleteSelectedNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -323,18 +364,23 @@ while($row = mysqli_fetch_array($result)){
         
       </div>
       <div class="modal-body modalBodyOfDeletingNote">
+      <form id="" method="POST" action="">
         <!--AJAX of this is in selectNote.php, not in NotebooksPage2Script.js-->
-        Delete '<b id="titleDeletingNoteID"> </b>'? <br>Note ID: <b id="titleID"> </b>
+        Delete '<b id="titleDeletingNote"> </b>'? <br>Note ID: <b class="titleIDClass" id="titleID" name='titleIDName'> </b>
         <!--Hide the ID on deleting modal for formality purposes. We need to retrieve unique ID to specificity purposes.-->
       </div>
       <div class="modal-footer">
-        <button type="button" id="yesDeleteNote" class="btn btn-secondary pull-left">Yes</button>
-        <button type="button" id="noDeleteNote" class="btn btn-secondary pull-left">No</button>
+      
+        <button type="submit" name="yesDeleteNoteName" id="yesDeleteNote" class="btn btn-secondary pull-left">Yes</button>
+        <button type="submit" name="noDeleteNoteName" id="noDeleteNote" class="btn btn-secondary pull-left">No</button>
         <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+</form>
       </div>
     </div>
   </div>
 </div>
+
+
 <!--End of modal for delete selected notes-->
 
 
@@ -353,7 +399,8 @@ while($row = mysqli_fetch_array($result)){
         
       </div>
       <div class="modal-body modalBodyOfEditingNote">
-        Edit
+        Edit <b id="editNoteTitleID"> </b>
+        <p id="editNoteID"></p>
         <textarea id="editNoteArea"> </textarea>
       </div>
       <div class="modal-footer">
